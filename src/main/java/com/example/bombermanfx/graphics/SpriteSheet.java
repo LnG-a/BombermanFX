@@ -11,12 +11,12 @@ import java.net.URL;
  */
 public class SpriteSheet {
 
-    private String _path;
+    /*private String _path;
     public final int SIZE;
     public int[] _pixels;
     public BufferedImage image;
 
-    public static SpriteSheet tiles = new SpriteSheet("1.png", 256);
+    public static SpriteSheet tiles = new SpriteSheet("D:\\E-Learning\\OOP\\BombermanFX\\1.png", 256);
 
     public SpriteSheet(String path, int size) {
         _path = path;
@@ -36,5 +36,5 @@ public class SpriteSheet {
             e.printStackTrace();
             System.exit(0);
         }
-    }
+    }*/
 }

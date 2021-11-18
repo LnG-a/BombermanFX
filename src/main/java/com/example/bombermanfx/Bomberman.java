@@ -9,7 +9,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -19,18 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bomberman extends Application {
-    private static int width = 1000;
-    private static int height = 1000;
-    private int mainPosX=0;
-    private int mainPosY=0;
     public static final int WIDTH = 20;
     public static final int HEIGHT = 15;
 
+    private Bomber player = new Bomber(1, 1, Sprite.bomber);
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<MovableEntity> moveEntities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>();
-
+    private List<Entity> entities = new ArrayList<>();
+    private List<Entity> stillEntities = new ArrayList<>();
 
     public static void main(String[] args) {
         Application.launch(Bomberman.class);
@@ -53,58 +48,59 @@ public class Bomberman extends Application {
         // Them scene vao stage
         stage.setScene(scene);
         stage.show();
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
-            public void handle(long l) {
+            public void handle(long now) {
+
                 render();
                 update();
             }
         };
-        timer.start();
 
+        timer.start();
         createMap();
-        Image a = new Image("D:\\E-Learning\\OOP\\BombermanFX\\1.png");
-        MovableEntity bomberman = new Bomber(0, 0, a);
-        moveEntities.add(bomberman);
+
     }
 
     private void render() {
-        gc.setFill(Color.WHITE);
-        gc.fillRect(0, 0, width, height);
-        /*gc.setFill(Color.BLACK);
-        gc.fillRect(mainPosX, mainPosY, 100, 100);*/
-        canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                switch (keyEvent.getCode()) {
-                    case RIGHT:
-                        moveEntities.get(0).moveRight();
-                        break;
-                    case LEFT:
-                        moveEntities.get(0).moveLeft();
-                        break;
-                    case UP:
-                        moveEntities.get(0).moveUp();
-                        break;
-                    case DOWN:
-                            moveEntities.get(0).moveDown();
-                        break;
-                }
-            }
-        });
-        for (Entity i:moveEntities){
+        for (Entity i:stillEntities){
             i.render(gc);
         }
+        for (Entity i: entities){
+            i.render(gc);
+        }
+        player.render(gc);
     }
 
     private void update() {
+        player.update(this);
+        for (int i=0;i<entities.size();i++){
+            if (entities.get(i).isDestroyed()) {
+                entities.remove(i);
+                continue;
+            }
+            entities.get(i).update(this);
+        }
 
     }
 
     private void createMap() {
-
+        for (int i=0;i<WIDTH;i++){
+            for (int j=0;j<HEIGHT;j++){
+                if (i==0||i==WIDTH-1||j==0||j==HEIGHT-1) {
+                    stillEntities.add(new Wall(i,j,Sprite.wall));
+                } else {
+                    stillEntities.add(new Grass(i,j,Sprite.grass));
+                }
+            }
+        }
     }
 
+    public List<Entity> getEntities() {
+        return entities;
+    }
 
+    public Canvas getCanvas() {
+        return canvas;
+    }
 }

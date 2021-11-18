@@ -1,5 +1,6 @@
 package com.example.bombermanfx.entities;
 
+import com.example.bombermanfx.Bomberman;
 import javafx.scene.image.Image;
 
 public class Grass extends Entity {
@@ -9,7 +10,7 @@ public class Grass extends Entity {
     }
 
     @Override
-    public void update() {
+    public void update(Bomberman game) {
 
     }
 }
