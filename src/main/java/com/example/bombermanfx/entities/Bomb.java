@@ -5,28 +5,39 @@ import com.example.bombermanfx.graphics.Sprite;
 import javafx.scene.image.Image;
 
 public class Bomb extends Entity {
-    private long time;
-    private int flameLength;
+    public static int currentBomb=0;
+
+    private final long time;
+    private final int flameLength;
 
     public Bomb(int xUnit, int yUnit, Image img, int flameLength) {
         super(xUnit, yUnit, img);
         time = System.currentTimeMillis();
         this.flameLength = flameLength;
-        setPassable(false);
+        currentBomb++;
     }
 
     @Override
     public void update(Bomberman game) {
-        if (time < System.currentTimeMillis() - 2000) {
-            explode(game);
-            setDestroyed(true);
-        }
+        if (time < System.currentTimeMillis() - 2000) explode(game);
+        if (checkPassable(game)) setPassable(false);
+    }
+
+    private boolean checkPassable(Bomberman game) {
+        return game.getPlayer().getX()>=x+1
+                ||game.getPlayer().getY()>=y+1
+                ||game.getPlayer().getX()+1<=x
+                ||game.getPlayer().getY()+1<=y;
     }
 
     private void explode(Bomberman game) {
-        int xBomb = this.x / Sprite.SCALED_SIZE;
-        int yBomb = this.y / Sprite.SCALED_SIZE;
+        setDestroyed(true);
+        currentBomb--;
+
+        int xBomb = (int) this.x;
+        int yBomb = (int) this.y;
         game.getEntities().add(new Flame(xBomb, yBomb, Sprite.flame));
+
         for (int i = xBomb - flameLength; i <= xBomb + flameLength; i++) {
             if (i == xBomb - flameLength) {
                 game.getEntities().add(new Flame(xBomb - flameLength, yBomb, Sprite.flameLeft));
@@ -36,6 +47,7 @@ public class Bomb extends Entity {
                 game.getEntities().add(new Flame(i, yBomb, Sprite.flameHorizontal));
             }
         }
+
         for (int i = yBomb - flameLength; i <= yBomb + flameLength; i++) {
             if (i == yBomb - flameLength) {
                 game.getEntities().add(new Flame(xBomb, yBomb - flameLength, Sprite.flameUp));

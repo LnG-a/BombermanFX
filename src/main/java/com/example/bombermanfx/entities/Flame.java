@@ -4,7 +4,7 @@ import com.example.bombermanfx.Bomberman;
 import javafx.scene.image.Image;
 
 public class Flame extends Entity{
-    private long time;
+    private final long time;
 
     public Flame(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);

@@ -8,15 +8,15 @@ import javafx.scene.input.KeyEvent;
 
 public class Bomber extends MovableEntity {
     private int life;
-    private double speed;
+
     private int flameLength;
     private int numberOfBombs;
 
     public Bomber(int x, int y, Image img) {
         super( x, y, img);
-        this.speed=0.5;
+        this.speed=0.70;
         this.flameLength=2  ;
-        this.numberOfBombs=1;
+        this.numberOfBombs=2;
         this.life=3;
     }
 
@@ -27,52 +27,34 @@ public class Bomber extends MovableEntity {
             public void handle(KeyEvent keyEvent) {
                 switch (keyEvent.getCode()) {
                     case RIGHT:
-                        moveRight();
+                        moveRight(game);
                         break;
                     case LEFT:
-                        moveLeft();
+                        moveLeft(game);
                         break;
                     case UP:
-                        moveUp();
+                        moveUp(game);
                         break;
                     case DOWN:
-                        moveDown();
+                        moveDown(game);
                         break;
                     case SPACE:
-                        game.getEntities().add(createBomb());
+                        if (canCreateBomb()){
+                            game.getEntities().add(createBomb());
+                        }
                         break;
                 }
             }
         });
     }
 
-    @Override
-    public void moveRight(){
-        this.x+=speed* Sprite.SCALED_SIZE;
-    }
-
-    @Override
-    public void moveLeft(){
-        this.x-=speed* Sprite.SCALED_SIZE;
-    }
-
-    @Override
-    public void moveUp(){
-        this.y-=speed* Sprite.SCALED_SIZE;
-    }
-
-    @Override
-    public void moveDown(){
-        this.y+=speed* Sprite.SCALED_SIZE;
-    }
-
     public Bomb createBomb(){
-        int xBomb=this.x/Sprite.SCALED_SIZE;
-        int yBomb=this.y/Sprite.SCALED_SIZE;
-        int next=this.x%Sprite.SCALED_SIZE;
-        if (next>=Sprite.SCALED_SIZE/2) xBomb++;
-        next=this.y%Sprite.SCALED_SIZE;
-        if (next>=Sprite.SCALED_SIZE/2) yBomb++;
+        int xBomb= (int) this.x;
+        int yBomb= (int) this.y;
+        double next = x%1;
+        if (next>=0.5) xBomb++;
+        next=this.y%1;
+        if (next>=0.5) yBomb++;
         return new Bomb(xBomb,yBomb,Sprite.bomb,this.flameLength);
     }
 
@@ -106,5 +88,9 @@ public class Bomber extends MovableEntity {
 
     public double getSpeed() {
         return speed;
+    }
+
+    public boolean canCreateBomb(){
+        return numberOfBombs>Bomb.currentBomb;
     }
 }

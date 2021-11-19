@@ -94,13 +94,22 @@ public class Bomberman extends Application {
                 }
             }
         }
+        stillEntities.add(new Wall(3,3,Sprite.wall));
     }
 
     public List<Entity> getEntities() {
         return entities;
     }
 
+    public List<Entity> getStillEntities() {
+        return stillEntities;
+    }
+
     public Canvas getCanvas() {
         return canvas;
+    }
+
+    public Bomber getPlayer() {
+        return player;
     }
 }

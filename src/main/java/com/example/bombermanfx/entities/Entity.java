@@ -11,10 +11,10 @@ import javafx.scene.shape.Rectangle;
 
 public abstract class Entity {
     //Tọa độ X tính từ góc trái trên trong Canvas
-    protected int x;
+    protected double x;
 
     //Tọa độ Y tính từ góc trái trên trong Canvas
-    protected int y;
+    protected double y;
 
     protected Image img;
 
@@ -22,23 +22,23 @@ public abstract class Entity {
     protected boolean passable;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
-    public Entity(int xUnit, int yUnit, Image img) {
-        this.x = xUnit * Sprite.SCALED_SIZE;
-        this.y = yUnit * Sprite.SCALED_SIZE;
+    public Entity(double x, double y, Image img) {
+        this.x = x;
+        this.y = y;
         this.img = img;
         this.destroyed = false;
         passable = true;
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(img, x, y);
+        gc.drawImage(img, x*Sprite.SCALED_SIZE, y*Sprite.SCALED_SIZE);
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -59,4 +59,15 @@ public abstract class Entity {
     public void setPassable(boolean passable) {
         this.passable = passable;
     }
+
+    public boolean validatePosition(Bomberman game,int x, int y){
+        for (Entity i: game.getEntities()){
+            if (i.getX()==x && i.getY()==y &&!i.passable) return false;
+        }
+        for (Entity i: game.getStillEntities()){
+            if (i.getX()==x&&i.getY()==y&& !i.passable) return false;
+        }
+        return true;
+    }
+
 }
