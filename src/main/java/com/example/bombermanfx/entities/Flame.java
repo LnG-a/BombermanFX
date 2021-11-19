@@ -14,7 +14,12 @@ public class Flame extends Entity{
     @Override
     public void update(Bomberman game) {
         if (time < System.currentTimeMillis()-500) {
-            this.setDestroyed(true);
+            dead(game);
         }
+    }
+
+    @Override
+    public void dead(Bomberman game) {
+        game.getEntities().remove(this);
     }
 }

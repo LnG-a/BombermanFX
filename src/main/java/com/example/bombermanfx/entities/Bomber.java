@@ -48,6 +48,11 @@ public class Bomber extends MovableEntity {
         });
     }
 
+    @Override
+    public void dead(Bomberman game) {
+
+    }
+
     public Bomb createBomb(){
         int xBomb= (int) this.x;
         int yBomb= (int) this.y;

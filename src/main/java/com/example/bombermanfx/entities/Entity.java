@@ -18,7 +18,6 @@ public abstract class Entity {
 
     protected Image img;
 
-    protected boolean destroyed;
     protected boolean passable;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
@@ -26,7 +25,6 @@ public abstract class Entity {
         this.x = x;
         this.y = y;
         this.img = img;
-        this.destroyed = false;
         passable = true;
     }
 
@@ -44,16 +42,10 @@ public abstract class Entity {
 
     public abstract void update(Bomberman game);
 
-    public boolean isDestroyed() {
-        return destroyed;
-    }
+    public abstract void dead(Bomberman game);
 
     public boolean isPassable() {
         return passable;
-    }
-
-    public void setDestroyed(boolean destroyed) {
-        this.destroyed = destroyed;
     }
 
     public void setPassable(boolean passable) {

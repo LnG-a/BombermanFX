@@ -13,4 +13,9 @@ public class Grass extends Entity {
     public void update(Bomberman game) {
 
     }
+
+    @Override
+    public void dead(Bomberman game) {
+
+    }
 }

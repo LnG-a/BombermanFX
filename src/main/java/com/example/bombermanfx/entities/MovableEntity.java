@@ -46,22 +46,6 @@ public abstract class MovableEntity extends Entity{
         }
     }
 
-    public boolean canMoveRight(Bomberman game){
-        return false;
-    }
-
-    public boolean canMoveLeft(Bomberman game){
-        return false;
-    }
-
-    public boolean canMoveUp(Bomberman game){
-        return false;
-    }
-
-    public boolean canMoveDown(Bomberman game){
-        return false;
-    }
-
     private boolean canMove(Bomberman game,double x, double y){
         int checkX=(int) x;
         int checkY=(int) y;

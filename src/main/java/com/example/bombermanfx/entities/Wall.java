@@ -14,4 +14,9 @@ public class Wall extends Entity {
     public void update(Bomberman game) {
 
     }
+
+    @Override
+    public void dead(Bomberman game) {
+
+    }
 }

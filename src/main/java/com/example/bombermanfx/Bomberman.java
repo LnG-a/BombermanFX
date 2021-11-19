@@ -75,10 +75,6 @@ public class Bomberman extends Application {
     private void update() {
         player.update(this);
         for (int i=0;i<entities.size();i++){
-            if (entities.get(i).isDestroyed()) {
-                entities.remove(i);
-                continue;
-            }
             entities.get(i).update(this);
         }
 
@@ -111,5 +107,12 @@ public class Bomberman extends Application {
 
     public Bomber getPlayer() {
         return player;
+    }
+
+    public Entity getAt(int x,int y){
+        for (Entity i:entities){
+            if (i.getX()==x&&i.getY()==y&&!i.getClass().equals(Flame.class)) return i;
+        }
+        return null;
     }
 }
