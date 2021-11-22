@@ -90,7 +90,10 @@ public class Bomberman extends Application {
                 }
             }
         }
-        stillEntities.add(new Wall(3,3,Sprite.wall));
+        for (int i=3;i<WIDTH-3;i++){
+            entities.add(new Brick(i,3,Sprite.brick));
+        }
+        entities.add(new Oneal(18,1,Sprite.oneal));
     }
 
     public List<Entity> getEntities() {
@@ -111,8 +114,20 @@ public class Bomberman extends Application {
 
     public Entity getAt(int x,int y){
         for (Entity i:entities){
-            if (i.getX()==x&&i.getY()==y&&!i.getClass().equals(Flame.class)) return i;
+            if (i.getX()==x&&i.getY()==y&&!i.getClass().equals(Flame.class)) {
+                return i;
+            }
         }
         return null;
+    }
+
+    public boolean validatePosition(Bomberman game,int x, int y){
+        for (Entity i: game.getEntities()){
+            if (i.getX()==x && i.getY()==y &&!i.isPassable()) return false;
+        }
+        for (Entity i: game.getStillEntities()){
+            if (i.getX()==x&&i.getY()==y&& !i.isPassable()) return false;
+        }
+        return true;
     }
 }

@@ -7,6 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 
 public class Bomber extends MovableEntity {
+    public static final double MAXSPEED=0.5;
+    public static final int MAXFLAMELENGTH=8;
+    public static final int MAXBOMBS=8;
+
     private int life;
 
     private int flameLength;
@@ -14,7 +18,7 @@ public class Bomber extends MovableEntity {
 
     public Bomber(int x, int y, Image img) {
         super( x, y, img);
-        this.speed=0.70;
+        this.speed=0.2;
         this.flameLength=2  ;
         this.numberOfBombs=2;
         this.life=3;
@@ -75,10 +79,6 @@ public class Bomber extends MovableEntity {
         this.numberOfBombs = numberOfBombs;
     }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
     public int getFlameLength() {
         return flameLength;
     }
@@ -89,10 +89,6 @@ public class Bomber extends MovableEntity {
 
     public int getNumberOfBombs() {
         return numberOfBombs;
-    }
-
-    public double getSpeed() {
-        return speed;
     }
 
     public boolean canCreateBomb(){

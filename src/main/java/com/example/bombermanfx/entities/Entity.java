@@ -28,6 +28,14 @@ public abstract class Entity {
         passable = true;
     }
 
+    protected boolean checkCollide(Bomberman game) {
+        boolean checkX=(x<=game.getPlayer().getX()&&game.getPlayer().getX()<=x+1)
+                ||(x<=game.getPlayer().getX()+1&&game.getPlayer().getX()+1<=x+1);
+        boolean checkY=(y<=game.getPlayer().getY()&&game.getPlayer().getY()<=y+1)
+                || (y<=game.getPlayer().getY()+1&&game.getPlayer().getY()+1<=y+1);
+        return checkX&&checkY;
+    }
+
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x*Sprite.SCALED_SIZE, y*Sprite.SCALED_SIZE);
     }
@@ -52,14 +60,5 @@ public abstract class Entity {
         this.passable = passable;
     }
 
-    public boolean validatePosition(Bomberman game,int x, int y){
-        for (Entity i: game.getEntities()){
-            if (i.getX()==x && i.getY()==y &&!i.passable) return false;
-        }
-        for (Entity i: game.getStillEntities()){
-            if (i.getX()==x&&i.getY()==y&& !i.passable) return false;
-        }
-        return true;
-    }
 
 }

@@ -4,6 +4,11 @@ import com.example.bombermanfx.Bomberman;
 import javafx.scene.image.Image;
 
 public abstract class MovableEntity extends Entity{
+    public static final int LEFT=0;
+    public static final int RIGHT=1;
+    public static final int UP=2;
+    public static final int DOWN=3;
+
     protected double speed;
 
     public MovableEntity(int xUnit, int yUnit, Image img) {
@@ -50,16 +55,23 @@ public abstract class MovableEntity extends Entity{
         int checkX=(int) x;
         int checkY=(int) y;
         if (x==checkX && y==checkY) {
-            return validatePosition(game,checkX,checkY);
+            return game.validatePosition(game, checkX, checkY);
         } else if (x!=checkX&& y==checkY){
-            return validatePosition(game,checkX,checkY) && validatePosition(game,checkX+1,checkY);
+            return game.validatePosition(game, checkX, checkY) && game.validatePosition(game, checkX + 1, checkY);
         }
         else if (x==checkX&&y!=checkY){
-            return validatePosition(game,checkX,checkY) && validatePosition(game,checkX,checkY+1);
+            return game.validatePosition(game, checkX, checkY) && game.validatePosition(game, checkX, checkY + 1);
         } else {
-            return validatePosition(game,checkX,checkY) && validatePosition(game,checkX,checkY+1)
-                    && validatePosition(game,checkX+1,checkY) && validatePosition(game,checkX+1,checkY+1);
+            return game.validatePosition(game, checkX, checkY) && game.validatePosition(game, checkX, checkY + 1)
+                    && game.validatePosition(game, checkX + 1, checkY) && game.validatePosition(game, checkX + 1, checkY + 1);
         }
     }
 
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
 }

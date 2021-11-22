@@ -36,6 +36,7 @@ public class Bomb extends Entity {
                 || game.getPlayer().getY() + 1 <= y;
     }
 
+
     private void explode(Bomberman game) {
         int xBomb = (int) this.x;
         int yBomb = (int) this.y;
@@ -44,10 +45,11 @@ public class Bomb extends Entity {
 
         for (int i = xBomb - 1; i >= xBomb - flameLength; i--) {
             Entity a= game.getAt(i,yBomb);
-            if (a!=null) a.dead(game);
-            if (!validatePosition(game,i,yBomb)){
+            if (!game.validatePosition(game, i, yBomb)){
+                if (a!=null) a.dead(game);
                 break;
             }
+            if (a!=null) a.dead(game);
             if (i == xBomb - flameLength) {
                 game.getEntities().add(new Flame(i, yBomb, Sprite.flameLeft));
             } else {
@@ -58,10 +60,11 @@ public class Bomb extends Entity {
 
         for (int i = xBomb + 1; i <= xBomb + flameLength; i++) {
             Entity a= game.getAt(i,yBomb);
-            if (a!=null) a.dead(game);
-            if (!validatePosition(game,i,yBomb)){
+            if (!game.validatePosition(game, i, yBomb)){
+                if (a!=null) a.dead(game);
                 break;
             }
+            if (a!=null) a.dead(game);
             if (i == xBomb + flameLength) {
                 game.getEntities().add(new Flame(i, yBomb, Sprite.flameRight));
             } else {
@@ -71,10 +74,11 @@ public class Bomb extends Entity {
 
         for (int i = yBomb-1; i >= yBomb - flameLength; i--) {
             Entity a= game.getAt(xBomb,i);
-            if (a!=null) a.dead(game);
-            if (!validatePosition(game,xBomb,i)){
+            if (!game.validatePosition(game, xBomb, i)){
+                if (a!=null) a.dead(game);
                 break;
             }
+            if (a!=null) a.dead(game);
             if (i == yBomb - flameLength) {
                 game.getEntities().add(new Flame(xBomb, i, Sprite.flameUp));
             } else {
@@ -84,10 +88,11 @@ public class Bomb extends Entity {
 
         for (int i = yBomb+1; i <= yBomb + flameLength; i++) {
             Entity a= game.getAt(xBomb,i);
-            if (a!=null) a.dead(game);
-            if (!validatePosition(game,xBomb,i)){
+            if (!game.validatePosition(game, xBomb, i)){
+                if (a!=null) a.dead(game);
                 break;
             }
+            if (a!=null) a.dead(game);
             if (i == yBomb + flameLength) {
                 game.getEntities().add(new Flame(xBomb, i, Sprite.flameDown));
             } else if (i != yBomb) {
