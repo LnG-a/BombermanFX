@@ -7,10 +7,10 @@ public class Oneal extends MovableEntity{
     private long time=System.currentTimeMillis();
     private int random=(int) (Math.random()*4);;
 
-    public Oneal(int xUnit, int yUnit, Image img) {
-        super(xUnit, yUnit, img);
-        this.speed=0;
+    public Oneal(double x, double y, Image img) {
+        super(x, y, img);
     }
+
 
     @Override
     public void update(Bomberman game) {
@@ -22,10 +22,15 @@ public class Oneal extends MovableEntity{
         if (random==MovableEntity.RIGHT) moveRight(game);
         if (random==MovableEntity.UP) moveUp(game);
         if (random==MovableEntity.DOWN) moveDown(game);
+        for (Entity i:game.getEntities()){
+            if (this.checkCollide(i)&&i.getClass().equals(Flame.class)) {
+                game.getEntities().remove(this);
+                break;
+            }
+        }
     }
 
     @Override
     public void dead(Bomberman game) {
-        game.getEntities().remove(this);
     }
 }

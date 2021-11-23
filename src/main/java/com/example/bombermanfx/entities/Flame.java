@@ -3,6 +3,8 @@ package com.example.bombermanfx.entities;
 import com.example.bombermanfx.Bomberman;
 import javafx.scene.image.Image;
 
+import java.util.Objects;
+
 public class Flame extends Entity{
     private final long time;
 
@@ -14,12 +16,12 @@ public class Flame extends Entity{
     @Override
     public void update(Bomberman game) {
         if (time < System.currentTimeMillis()-500) {
-            dead(game);
+            game.getEntities().remove(this);
         }
     }
 
     @Override
     public void dead(Bomberman game) {
-        game.getEntities().remove(this);
+
     }
 }

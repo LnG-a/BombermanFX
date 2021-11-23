@@ -28,11 +28,11 @@ public abstract class Entity {
         passable = true;
     }
 
-    protected boolean checkCollide(Bomberman game) {
-        boolean checkX=(x<=game.getPlayer().getX()&&game.getPlayer().getX()<=x+1)
-                ||(x<=game.getPlayer().getX()+1&&game.getPlayer().getX()+1<=x+1);
-        boolean checkY=(y<=game.getPlayer().getY()&&game.getPlayer().getY()<=y+1)
-                || (y<=game.getPlayer().getY()+1&&game.getPlayer().getY()+1<=y+1);
+    protected boolean checkCollide(Entity other) {
+        boolean checkX=(x<=other.getX()&&other.getX()<=x+1)
+                ||(x<=other.getX()+1&&other.getX()+1<=x+1);
+        boolean checkY=(y<=other.getY()&&other.getY()<=y+1)
+                || (y<=other.getY()+1&&other.getY()+1<=y+1);
         return checkX&&checkY;
     }
 

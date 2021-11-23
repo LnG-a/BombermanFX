@@ -93,7 +93,7 @@ public class Bomberman extends Application {
         for (int i=3;i<WIDTH-3;i++){
             entities.add(new Brick(i,3,Sprite.brick));
         }
-        entities.add(new Oneal(18,1,Sprite.oneal));
+        entities.add(new Oneal(17.5,1.5,Sprite.oneal));
     }
 
     public List<Entity> getEntities() {

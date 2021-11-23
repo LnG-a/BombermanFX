@@ -23,7 +23,7 @@ public  class Item extends Entity{
 
     @Override
     public void update(Bomberman game) {
-        if (checkCollide(game)) {
+        if (checkCollide(game.getPlayer())) {
             powerUp(game.getPlayer());
             game.getEntities().remove(this);
         }

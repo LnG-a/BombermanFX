@@ -38,6 +38,8 @@ public class Sprite {
     public static final Image grass = new Image("file:textures/grass.png",SCALED_SIZE,SCALED_SIZE,true,true);
     public static final Image wall = new Image("file:textures/wall.png",SCALED_SIZE,SCALED_SIZE,true,true);
     public static final Image brick = new Image("file:textures/brick.png",SCALED_SIZE,SCALED_SIZE,true,true);
+    public static final Image portal = new Image("file:textures/portal.png",SCALED_SIZE,SCALED_SIZE,true,true);
+
 
     public static final Image oneal = new Image("file:textures/oneal_left1.png",SCALED_SIZE,SCALED_SIZE,true,true);
     /*

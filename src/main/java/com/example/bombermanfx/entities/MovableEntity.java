@@ -11,8 +11,8 @@ public abstract class MovableEntity extends Entity{
 
     protected double speed;
 
-    public MovableEntity(int xUnit, int yUnit, Image img) {
-        super(xUnit, yUnit, img);
+    public MovableEntity(double x, double y, Image img) {
+        super(x, y, img);
     }
 
     public void moveRight(Bomberman game){
