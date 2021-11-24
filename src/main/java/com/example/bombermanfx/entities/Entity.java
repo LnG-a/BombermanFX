@@ -29,10 +29,10 @@ public abstract class Entity {
     }
 
     protected boolean checkCollide(Entity other) {
-        boolean checkX=(x<=other.getX()&&other.getX()<=x+1)
-                ||(x<=other.getX()+1&&other.getX()+1<=x+1);
-        boolean checkY=(y<=other.getY()&&other.getY()<=y+1)
-                || (y<=other.getY()+1&&other.getY()+1<=y+1);
+        boolean checkX=(x<=other.getX()&&other.getX()<x+1)
+                ||(x<other.getX()+1&&other.getX()+1<=x+1);
+        boolean checkY=(y<=other.getY()&&other.getY()<y+1)
+                || (y<other.getY()+1&&other.getY()+1<=y+1);
         return checkX&&checkY;
     }
 

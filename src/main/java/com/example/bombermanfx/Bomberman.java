@@ -63,10 +63,10 @@ public class Bomberman extends Application {
     }
 
     private void render() {
-        for (Entity i:stillEntities){
+        for (Entity i : stillEntities) {
             i.render(gc);
         }
-        for (Entity i: entities){
+        for (Entity i : entities) {
             i.render(gc);
         }
         player.render(gc);
@@ -74,26 +74,26 @@ public class Bomberman extends Application {
 
     private void update() {
         player.update(this);
-        for (int i=0;i<entities.size();i++){
+        for (int i = 0; i < entities.size(); i++) {
             entities.get(i).update(this);
         }
 
     }
 
     private void createMap() {
-        for (int i=0;i<WIDTH;i++){
-            for (int j=0;j<HEIGHT;j++){
-                if (i==0||i==WIDTH-1||j==0||j==HEIGHT-1) {
-                    stillEntities.add(new Wall(i,j,Sprite.wall));
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                if (i == 0 || i == WIDTH - 1 || j == 0 || j == HEIGHT - 1) {
+                    stillEntities.add(new Wall(i, j, Sprite.wall));
                 } else {
-                    stillEntities.add(new Grass(i,j,Sprite.grass));
+                    stillEntities.add(new Grass(i, j, Sprite.grass));
                 }
             }
         }
-        for (int i=3;i<WIDTH-3;i++){
-            entities.add(new Brick(i,3,Sprite.brick));
+        for (int i = 3; i < WIDTH - 3; i++) {
+            entities.add(new Brick(i, 3, Sprite.brick));
         }
-        entities.add(new Oneal(17.5,1.5,Sprite.oneal));
+        entities.add(new Oneal(17.5, 1.5, Sprite.oneal));
     }
 
     public List<Entity> getEntities() {
@@ -112,22 +112,18 @@ public class Bomberman extends Application {
         return player;
     }
 
-    public Entity getAt(int x,int y){
-        for (Entity i:entities){
-            if (i.getX()==x&&i.getY()==y&&!i.getClass().equals(Flame.class)) {
-                return i;
-            }
+    public Entity getAt(int x, int y) {
+        for (Entity i : this.getEntities()) {
+            if (i.getX() == x && i.getY() == y && !i.isPassable()) return i;
+        }
+        for (Entity i : this.getStillEntities()) {
+            if (i.getX() == x && i.getY() == y && i.getClass().equals(Wall.class)) return i;
         }
         return null;
     }
 
-    public boolean validatePosition(Bomberman game,int x, int y){
-        for (Entity i: game.getEntities()){
-            if (i.getX()==x && i.getY()==y &&!i.isPassable()) return false;
-        }
-        for (Entity i: game.getStillEntities()){
-            if (i.getX()==x&&i.getY()==y&& !i.isPassable()) return false;
-        }
+    public boolean validatePosition(int x, int y) {
+        if (getAt(x,y)!=null) return false;
         return true;
     }
 }

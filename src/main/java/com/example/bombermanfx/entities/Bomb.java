@@ -19,13 +19,20 @@ public class Bomb extends Entity {
 
     @Override
     public void update(Bomberman game) {
-        if (time < System.currentTimeMillis() - 2000) dead(game);
+        if (time < System.currentTimeMillis() - 2000) explode(game);
+        else {
+            for (Entity i:game.getEntities()){
+                if (this.checkCollide(i)&&i.getClass().equals(Flame.class)) {
+                    explode(game);
+                    break;
+                }
+            }
+        }
         if (checkPassable(game)) setPassable(false);
     }
 
     @Override
     public void dead(Bomberman game) {
-        currentBomb--;
         explode(game);
     }
 
@@ -38,18 +45,18 @@ public class Bomb extends Entity {
 
 
     private void explode(Bomberman game) {
+        currentBomb--;
         int xBomb = (int) this.x;
         int yBomb = (int) this.y;
         game.getEntities().remove(this);
         game.getEntities().add(new Flame(xBomb, yBomb, Sprite.flame));
 
         for (int i = xBomb - 1; i >= xBomb - flameLength; i--) {
-            Entity a= game.getAt(i,yBomb);
-            if (!game.validatePosition(game, i, yBomb)){
-                if (a!=null) a.dead(game);
+            Entity a = game.getAt(i, yBomb);
+            if (a!=null){
+                a.dead(game);
                 break;
             }
-            if (a!=null) a.dead(game);
             if (i == xBomb - flameLength) {
                 game.getEntities().add(new Flame(i, yBomb, Sprite.flameLeft));
             } else {
@@ -59,12 +66,12 @@ public class Bomb extends Entity {
         }
 
         for (int i = xBomb + 1; i <= xBomb + flameLength; i++) {
-            Entity a= game.getAt(i,yBomb);
-            if (!game.validatePosition(game, i, yBomb)){
-                if (a!=null) a.dead(game);
+            Entity a = game.getAt(i, yBomb);
+            if (a!=null){
+                a.dead(game);
                 break;
             }
-            if (a!=null) a.dead(game);
+
             if (i == xBomb + flameLength) {
                 game.getEntities().add(new Flame(i, yBomb, Sprite.flameRight));
             } else {
@@ -72,13 +79,12 @@ public class Bomb extends Entity {
             }
         }
 
-        for (int i = yBomb-1; i >= yBomb - flameLength; i--) {
-            Entity a= game.getAt(xBomb,i);
-            if (!game.validatePosition(game, xBomb, i)){
-                if (a!=null) a.dead(game);
+        for (int i = yBomb - 1; i >= yBomb - flameLength; i--) {
+            Entity a = game.getAt(xBomb, i);
+            if (a!=null){
+                a.dead(game);
                 break;
             }
-            if (a!=null) a.dead(game);
             if (i == yBomb - flameLength) {
                 game.getEntities().add(new Flame(xBomb, i, Sprite.flameUp));
             } else {
@@ -86,13 +92,12 @@ public class Bomb extends Entity {
             }
         }
 
-        for (int i = yBomb+1; i <= yBomb + flameLength; i++) {
-            Entity a= game.getAt(xBomb,i);
-            if (!game.validatePosition(game, xBomb, i)){
-                if (a!=null) a.dead(game);
+        for (int i = yBomb + 1; i <= yBomb + flameLength; i++) {
+            Entity a = game.getAt(xBomb, i);
+            if (a!=null){
+                a.dead(game);
                 break;
             }
-            if (a!=null) a.dead(game);
             if (i == yBomb + flameLength) {
                 game.getEntities().add(new Flame(xBomb, i, Sprite.flameDown));
             } else if (i != yBomb) {
@@ -100,5 +105,4 @@ public class Bomb extends Entity {
             }
         }
     }
-
 }
