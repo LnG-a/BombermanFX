@@ -9,14 +9,14 @@ public  class Item extends Entity{
     public static final int FLAMEITEM =0;
     public static final int BOMBITEM =1;
     public static final int SPEEDITEM =2;
-    private static final Image[] images= new Image[]{Sprite.flameItem,Sprite.bombItem,Sprite.speedItem};
+    private static final Sprite[] sprites= new Sprite[]{Sprite.powerup_flames,Sprite.powerup_bombs,Sprite.powerup_speed};
 
     private final int type;
 
     public Item(double x, double y, Image img, int type) {
         super(x, y, img);
         this.type=type;
-        this.img=images[type];
+        this.img=sprites[type].getFxImage();
     }
 
 
@@ -34,7 +34,7 @@ public  class Item extends Entity{
             player.setFlameLength(player.getFlameLength() + 1);
         }
         if (player.getSpeed() < Bomber.MAXSPEED && type == SPEEDITEM) {
-            player.setSpeed(player.getSpeed() + 0.05);
+            player.setSpeed(player.getSpeed() + 0.02);
         }
         if (player.getNumberOfBombs() < Bomber.MAXBOMBS && type == BOMBITEM) {
             player.setNumberOfBombs(player.getNumberOfBombs() + 1);

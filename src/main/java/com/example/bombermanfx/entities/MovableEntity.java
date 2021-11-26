@@ -10,6 +10,10 @@ public abstract class MovableEntity extends Entity {
     public static final int DOWN = 3;
 
     protected double speed;
+    protected boolean right=false;
+    protected boolean left=false;
+    protected boolean up=false;
+    protected boolean down=false;
 
     public MovableEntity(double x, double y, Image img) {
         super(x, y, img);
