@@ -1,12 +1,13 @@
 package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
-import javafx.scene.image.Image;
+import com.example.bombermanfx.graphics.Sprite;
 
 public class Balloom extends MovableEntity{
 
-    public Balloom(double x, double y, Image img) {
-        super(x, y, img);
+    public Balloom(double x, double y) {
+        super(x, y);
+        this.img=Sprite.balloom_dead.getFxImage();
     }
 
     @Override

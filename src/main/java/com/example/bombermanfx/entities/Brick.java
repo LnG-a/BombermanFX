@@ -1,12 +1,14 @@
 package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
+import com.example.bombermanfx.graphics.Sprite;
 import javafx.scene.image.Image;
 
 public class Brick extends Entity{
-    public Brick(double x, double y, Image img) {
-        super(x, y, img);
+    public Brick(double x, double y) {
+        super(x, y);
         setPassable(false);
+        this.img=Sprite.brick.getFxImage();
     }
 
     @Override
@@ -23,7 +25,7 @@ public class Brick extends Entity{
     private void createItems(Bomberman game) {
         int randomType = (int)(Math.random()*3);
         if (randomType<=2){
-            game.getEntities().add(new Item(x,y,null,randomType));
+            game.getEntities().add(new Item(x,y, randomType));
         }
     }
 }

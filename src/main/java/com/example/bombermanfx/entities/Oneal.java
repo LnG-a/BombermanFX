@@ -1,14 +1,16 @@
 package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
+import com.example.bombermanfx.graphics.Sprite;
 import javafx.scene.image.Image;
 
 public class Oneal extends MovableEntity{
     private long time=System.currentTimeMillis();
     private int random=(int) (Math.random()*4);;
 
-    public Oneal(double x, double y, Image img) {
-        super(x, y, img);
+    public Oneal(double x, double y) {
+        super(x, y);
+        this.img=Sprite.oneal_left1.getFxImage();
     }
 
 

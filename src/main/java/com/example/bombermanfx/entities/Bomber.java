@@ -15,17 +15,17 @@ public class Bomber extends MovableEntity {
     private int flameLength;
     private int numberOfBombs;
 
-    public Bomber(int x, int y, Image img) {
-        super( x, y, img);
+    public Bomber(int x, int y) {
+        super( x, y);
         this.speed=0.09;
         this.flameLength=2  ;
         this.numberOfBombs=2;
         this.life=3;
+        this.img=Sprite.player_down.getFxImage();
     }
 
     @Override
     public void update(Bomberman game) {
-
         game.getCanvas().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
@@ -81,10 +81,22 @@ public class Bomber extends MovableEntity {
                 }
             }
         });
-        if (right) moveRight(game);
-        if (left) moveLeft(game);
-        if (down) moveDown(game);
-        if (up) moveUp(game);
+        if (right) {
+            moveRight(game);
+            this.img=Sprite.player_right.getFxImage();
+        }
+        if (left) {
+            moveLeft(game);
+            this.img=Sprite.player_left.getFxImage();
+        }
+        if (down) {
+            moveDown(game);
+            this.img=Sprite.player_down.getFxImage();
+        }
+        if (up) {
+            moveUp(game);
+            this.img=Sprite.player_up.getFxImage();
+        }
     }
 
     @Override
@@ -100,7 +112,7 @@ public class Bomber extends MovableEntity {
         next=this.y%1;
         if (next>=0.5) yBomb++;
         if( game.getAt(xBomb,yBomb)==null){
-            game.getEntities().add(new Bomb(xBomb,yBomb,Sprite.bomb.getFxImage(),this.flameLength));
+            game.getEntities().add(new Bomb(xBomb,yBomb,this.flameLength));
         }
     }
 

@@ -17,14 +17,12 @@ public abstract class Entity {
     protected double y;
 
     protected Image img;
-
     protected boolean passable;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
-    public Entity(double x, double y, Image img) {
+    public Entity(double x, double y) {
         this.x = x;
         this.y = y;
-        this.img = img;
         passable = true;
     }
 

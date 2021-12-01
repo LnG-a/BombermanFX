@@ -21,7 +21,7 @@ public class Bomberman extends Application {
     public static final int WIDTH = 20;
     public static final int HEIGHT = 15;
 
-    private Bomber player = new Bomber(1, 1, Sprite.player_down.getFxImage());
+    private Bomber player = new Bomber(1, 1);
     private GraphicsContext gc;
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
@@ -83,16 +83,16 @@ public class Bomberman extends Application {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 if (i == 0 || i == WIDTH - 1 || j == 0 || j == HEIGHT - 1) {
-                    stillEntities.add(new Wall(i, j, Sprite.wall.getFxImage()));
+                    stillEntities.add(new Wall(i, j));
                 } else {
-                    stillEntities.add(new Grass(i, j, Sprite.grass.getFxImage()));
+                    stillEntities.add(new Grass(i, j));
                 }
             }
         }
         for (int i = 3; i < WIDTH - 3; i++) {
-            entities.add(new Brick(i, 3, Sprite.brick.getFxImage()));
+            entities.add(new Brick(i, 3));
         }
-        entities.add(new Oneal(17.5, 1.5, Sprite.oneal_right1.getFxImage()));
+        entities.add(new Oneal(17.5, 1.5));
     }
 
     public List<Entity> getEntities() {

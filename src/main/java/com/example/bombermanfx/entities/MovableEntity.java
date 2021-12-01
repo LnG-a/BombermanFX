@@ -15,8 +15,8 @@ public abstract class MovableEntity extends Entity {
     protected boolean up=false;
     protected boolean down=false;
 
-    public MovableEntity(double x, double y, Image img) {
-        super(x, y, img);
+    public MovableEntity(double x, double y) {
+        super(x, y);
     }
 
     public void moveRight(Bomberman game) {

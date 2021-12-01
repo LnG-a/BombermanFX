@@ -10,11 +10,12 @@ public class Bomb extends Entity {
     private final long time;
     private final int flameLength;
 
-    public Bomb(int x, int y, Image img, int flameLength) {
-        super(x, y, img);
+    public Bomb(int x, int y, int flameLength) {
+        super(x, y);
         time = System.currentTimeMillis();
         this.flameLength = flameLength;
         currentBomb++;
+        this.img=Sprite.bomb.getFxImage();
     }
 
     @Override
@@ -49,7 +50,7 @@ public class Bomb extends Entity {
         int xBomb = (int) this.x;
         int yBomb = (int) this.y;
         game.getEntities().remove(this);
-        game.getEntities().add(new Flame(xBomb, yBomb, Sprite.bomb_exploded1.getFxImage()));
+        game.getEntities().add(new Flame(xBomb, yBomb,Flame.CENTER));
 
         for (int i = xBomb - 1; i >= xBomb - flameLength; i--) {
             Entity a = game.getAt(i, yBomb);
@@ -58,9 +59,9 @@ public class Bomb extends Entity {
                 break;
             }
             if (i == xBomb - flameLength) {
-                game.getEntities().add(new Flame(i, yBomb, Sprite.explosion_horizontal_left_last.getFxImage()));
+                game.getEntities().add(new Flame(i, yBomb, Flame.LEFT));
             } else {
-                game.getEntities().add(new Flame(i, yBomb, Sprite.explosion_horizontal.getFxImage()));
+                game.getEntities().add(new Flame(i, yBomb, Flame.HORIZONTAL));
             }
 
         }
@@ -73,9 +74,9 @@ public class Bomb extends Entity {
             }
 
             if (i == xBomb + flameLength) {
-                game.getEntities().add(new Flame(i, yBomb, Sprite.explosion_horizontal_right_last.getFxImage()));
+                game.getEntities().add(new Flame(i, yBomb, Flame.RIGHT));
             } else {
-                game.getEntities().add(new Flame(i, yBomb, Sprite.explosion_horizontal.getFxImage()));
+                game.getEntities().add(new Flame(i, yBomb, Flame.HORIZONTAL));
             }
         }
 
@@ -86,9 +87,9 @@ public class Bomb extends Entity {
                 break;
             }
             if (i == yBomb - flameLength) {
-                game.getEntities().add(new Flame(xBomb, i, Sprite.explosion_vertical_top_last.getFxImage()));
+                game.getEntities().add(new Flame(xBomb, i, Flame.UP));
             } else {
-                game.getEntities().add(new Flame(xBomb, i, Sprite.explosion_vertical.getFxImage()));
+                game.getEntities().add(new Flame(xBomb, i, Flame.VERTICAL));
             }
         }
 
@@ -99,9 +100,9 @@ public class Bomb extends Entity {
                 break;
             }
             if (i == yBomb + flameLength) {
-                game.getEntities().add(new Flame(xBomb, i, Sprite.explosion_vertical_down_last.getFxImage()));
+                game.getEntities().add(new Flame(xBomb, i, Flame.DOWN));
             } else if (i != yBomb) {
-                game.getEntities().add(new Flame(xBomb, i, Sprite.explosion_vertical.getFxImage()));
+                game.getEntities().add(new Flame(xBomb, i, Flame.VERTICAL));
             }
         }
     }

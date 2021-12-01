@@ -9,14 +9,15 @@ public  class Item extends Entity{
     public static final int FLAMEITEM =0;
     public static final int BOMBITEM =1;
     public static final int SPEEDITEM =2;
-    private static final Sprite[] sprites= new Sprite[]{Sprite.powerup_flames,Sprite.powerup_bombs,Sprite.powerup_speed};
+
+    private static final Image[] itemImages= new Image[]{Sprite.powerup_flames.getFxImage(),Sprite.powerup_bombs.getFxImage(),Sprite.powerup_speed.getFxImage()};
 
     private final int type;
 
-    public Item(double x, double y, Image img, int type) {
-        super(x, y, img);
+    public Item(double x, double y, int type) {
+        super(x, y);
         this.type=type;
-        this.img=sprites[type].getFxImage();
+        this.img=itemImages[type];
     }
 
 
@@ -30,14 +31,16 @@ public  class Item extends Entity{
     }
 
     private void powerUp(Bomber player) {
-        if (player.getFlameLength() < Bomber.MAXFLAMELENGTH && type == FLAMEITEM) {
-            player.setFlameLength(player.getFlameLength() + 1);
-        }
-        if (player.getSpeed() < Bomber.MAXSPEED && type == SPEEDITEM) {
-            player.setSpeed(player.getSpeed() + 0.02);
-        }
-        if (player.getNumberOfBombs() < Bomber.MAXBOMBS && type == BOMBITEM) {
-            player.setNumberOfBombs(player.getNumberOfBombs() + 1);
+        switch (type){
+            case  FLAMEITEM:
+                if (player.getFlameLength() < Bomber.MAXFLAMELENGTH) player.setFlameLength(player.getFlameLength() + 1);
+                break;
+            case SPEEDITEM:
+                if (player.getSpeed() < Bomber.MAXSPEED ) player.setSpeed(player.getSpeed() + 0.02);
+                break;
+            case BOMBITEM:
+                if (player.getNumberOfBombs() < Bomber.MAXBOMBS ) player.setNumberOfBombs(player.getNumberOfBombs() + 1);
+                break;
         }
     }
 
