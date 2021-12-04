@@ -9,17 +9,17 @@ public class Bomb extends Entity {
 
     private final long time;
     private final int flameLength;
-
+    
     public Bomb(int x, int y, int flameLength) {
         super(x, y);
         time = System.currentTimeMillis();
         this.flameLength = flameLength;
         currentBomb++;
-        this.img=Sprite.bomb.getFxImage();
     }
 
     @Override
     public void update(Bomberman game) {
+        animation+=1;
         if (time < System.currentTimeMillis() - 2000) explode(game);
         else {
             for (Entity i:game.getEntities()){
@@ -30,6 +30,7 @@ public class Bomb extends Entity {
             }
         }
         if (checkPassable(game)) setPassable(false);
+        this.img=Sprite.movingSprite(Sprite.bomb,Sprite.bomb_1,Sprite.bomb_2,animation,30).getFxImage();// ~6 FPS because in 1s animation +=60 and everytime animation+= 30/3: next frame.
     }
 
     @Override

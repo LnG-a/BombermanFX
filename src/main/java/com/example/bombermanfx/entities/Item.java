@@ -20,8 +20,6 @@ public  class Item extends Entity{
         this.img=itemImages[type];
     }
 
-
-
     @Override
     public void update(Bomberman game) {
         if (checkCollide(game.getPlayer())) {
@@ -36,7 +34,7 @@ public  class Item extends Entity{
                 if (player.getFlameLength() < Bomber.MAXFLAMELENGTH) player.setFlameLength(player.getFlameLength() + 1);
                 break;
             case SPEEDITEM:
-                if (player.getSpeed() < Bomber.MAXSPEED ) player.setSpeed(player.getSpeed() + 0.02);
+                if (player.getSpeed() < Bomber.MAXSPEED ) player.setSpeed(player.getSpeed() + 0.01);
                 break;
             case BOMBITEM:
                 if (player.getNumberOfBombs() < Bomber.MAXBOMBS ) player.setNumberOfBombs(player.getNumberOfBombs() + 1);

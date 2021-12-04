@@ -10,10 +10,12 @@ public abstract class MovableEntity extends Entity {
     public static final int DOWN = 3;
 
     protected double speed;
-    protected boolean right=false;
-    protected boolean left=false;
-    protected boolean up=false;
-    protected boolean down=false;
+    protected boolean isMovingRight=false;
+    protected boolean isMovingLeft=false;
+    protected boolean isMovingUp=false;
+    protected boolean isMovingDown=false;
+
+    private static final double fixingNumber=0.2;
 
     public MovableEntity(double x, double y) {
         super(x, y);
@@ -21,7 +23,10 @@ public abstract class MovableEntity extends Entity {
 
     public void moveRight(Bomberman game) {
         double afterX = x + speed;
-        if (canMove(game, afterX, y) || !canMove(game, x, y)) {
+        //if (afterX>=(int)afterX+1-fixingNumber) afterX=(int) afterX+1;
+        if (y<=(int) y+fixingNumber) y =(int) y;
+        else if (y>=(int)y+1-fixingNumber) y=(int) y+1;
+        if (canMove(game, afterX, y)) {
             x = afterX;
         } else {
             x = (int) afterX;
@@ -30,7 +35,10 @@ public abstract class MovableEntity extends Entity {
 
     public void moveLeft(Bomberman game) {
         double afterX = x - speed;
-        if (canMove(game, afterX, y) || !canMove(game, x, y)) {
+        if (y<=(int) y+fixingNumber) y =(int) y;
+        else if (y>=(int)y+1-fixingNumber) y=(int) y+1;
+        //if (afterX<=(int)afterX+fixingNumber) afterX=(int)afterX;
+        if (canMove(game, afterX, y)) {
             x = afterX;
         } else {
             x = (int) afterX + 1;
@@ -39,7 +47,10 @@ public abstract class MovableEntity extends Entity {
 
     public void moveUp(Bomberman game) {
         double afterY = y - speed;
-        if (canMove(game, x, afterY) || !canMove(game, x, y)) {
+        if (x>=(int)x+1-fixingNumber) x = (int)x +1;
+        else if (x<=(int)x+fixingNumber) x =(int) x;
+        //if (afterY<=(int)afterY+fixingNumber) afterY=(int)afterY;
+        if (canMove(game, x, afterY)) {
             y = afterY;
         } else {
             y = (int) afterY + 1;
@@ -48,7 +59,10 @@ public abstract class MovableEntity extends Entity {
 
     public void moveDown(Bomberman game) {
         double afterY = y + speed;
-        if (canMove(game, x, afterY) || !canMove(game, x, y)) {
+        if (x>=(int)x+1-fixingNumber) x = (int)x +1;
+        else if (x<=(int)x+fixingNumber) x =(int) x;
+        //if (afterY>=(int)afterY+1-fixingNumber) afterY=(int)afterY+1;
+        if (canMove(game, x, afterY)) {
             y = afterY;
         } else {
             y = (int) afterY;

@@ -7,17 +7,18 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 
 public class Bomber extends MovableEntity {
-    public static final double MAXSPEED=0.25;
+    public static final double MAXSPEED=0.1;
     public static final int MAXFLAMELENGTH=8;
     public static final int MAXBOMBS=8;
 
     private int life;
     private int flameLength;
     private int numberOfBombs;
+    private double fixingNumber=0.2;
 
     public Bomber(int x, int y) {
         super( x, y);
-        this.speed=0.09;
+        this.speed=0.04;
         this.flameLength=2  ;
         this.numberOfBombs=2;
         this.life=3;
@@ -26,33 +27,40 @@ public class Bomber extends MovableEntity {
 
     @Override
     public void update(Bomberman game) {
+        animation+=1;
+        /*if (!isMovingRight&&!isMovingLeft&&!isMovingUp&&!isMovingDown){
+            if (x>=(int)x+1-fixingNumber) x = (int)x +1;
+            else if (x<=(int)x+fixingNumber) x =(int) x;
+            if (y<=(int) y+fixingNumber) y =(int) y;
+            else if (y>=(int)y+1-fixingNumber) y=(int) y+1;
+        }*/
         game.getCanvas().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
                 switch (keyEvent.getCode()) {
                     case RIGHT:
-                        right=true;
-                        /*left=false;
-                        up=false;
-                        down=false;*/
+                        isMovingRight=true;
+                        isMovingLeft=false;
+                        isMovingUp=false;
+                        isMovingDown=false;
                         break;
                     case LEFT:
-//                        right=false;
-                        left=true;
-                        /*up=false;
-                        down=false;*/
+                        isMovingRight=false;
+                        isMovingLeft=true;
+                        isMovingUp=false;
+                        isMovingDown=false;
                         break;
                     case UP:
-                        /*right=false;
-                        left=false;*/
-                        up=true;
-                        /*down=false;*/
+                        isMovingRight=false;
+                        isMovingLeft=false;
+                        isMovingUp=true;
+                        isMovingDown=false;
                         break;
                     case DOWN:
-                        /*right=false;
-                        left=false;
-                        up=false;*/
-                        down=true;
+                        isMovingRight=false;
+                        isMovingLeft=false;
+                        isMovingUp=false;
+                        isMovingDown=true;
                         break;
                     case SPACE:
                         if (canCreateBomb()){
@@ -67,35 +75,38 @@ public class Bomber extends MovableEntity {
             public void handle(KeyEvent keyEvent) {
                 switch (keyEvent.getCode()) {
                     case RIGHT:
-                        right=false;
+                        isMovingRight=false;
                         break;
                     case LEFT:
-                        left=false;
+                        isMovingLeft=false;
                         break;
                     case UP:
-                        up=false;
+                        isMovingUp=false;
                         break;
                     case DOWN:
-                        down=false;
+                        isMovingDown=false;
                         break;
                 }
             }
         });
-        if (right) {
+        if (isMovingRight) {
             moveRight(game);
-            this.img=Sprite.player_right.getFxImage();
+            this.img=Sprite.movingSprite(Sprite.player_right,Sprite.player_right_1,Sprite.player_right_2,animation,20).getFxImage();
         }
-        if (left) {
+        if (isMovingLeft) {
             moveLeft(game);
             this.img=Sprite.player_left.getFxImage();
+            this.img=Sprite.movingSprite(Sprite.player_left,Sprite.player_left_1,Sprite.player_left_2,animation,30).getFxImage();
         }
-        if (down) {
+        if (isMovingDown) {
             moveDown(game);
             this.img=Sprite.player_down.getFxImage();
+            this.img=Sprite.movingSprite(Sprite.player_down,Sprite.player_down_1,Sprite.player_down_2,animation,30).getFxImage();
         }
-        if (up) {
+        if (isMovingUp) {
             moveUp(game);
             this.img=Sprite.player_up.getFxImage();
+            this.img=Sprite.movingSprite(Sprite.player_up,Sprite.player_up_1,Sprite.player_up_2,animation,30).getFxImage();
         }
     }
 

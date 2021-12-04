@@ -18,6 +18,7 @@ public abstract class Entity {
 
     protected Image img;
     protected boolean passable;
+    protected int animation=0;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity(double x, double y) {

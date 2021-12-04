@@ -92,6 +92,12 @@ public class Bomberman extends Application {
         for (int i = 3; i < WIDTH - 3; i++) {
             entities.add(new Brick(i, 3));
         }
+        for (int i = 3; i < WIDTH - 3; i+=2) {
+            stillEntities.add(new Wall(i, 5));
+        }
+        for (int i = 3; i < WIDTH - 3; i+=2) {
+            stillEntities.add(new Wall(i, 7));
+        }
         entities.add(new Oneal(17.5, 1.5));
     }
 
