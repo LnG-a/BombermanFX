@@ -98,7 +98,7 @@ public class Bomberman extends Application {
         for (int i = 3; i < WIDTH - 3; i+=2) {
             stillEntities.add(new Wall(i, 7));
         }
-        entities.add(new Oneal(17.5, 1.5));
+        entities.add(new Balloom(17, 1));
     }
 
     public List<Entity> getEntities() {
