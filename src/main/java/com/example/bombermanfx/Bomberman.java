@@ -13,13 +13,18 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class Bomberman extends Application {
-    public static final int WIDTH = 20;
-    public static final int HEIGHT = 15;
+    public static int WIDTH = 31;
+    public static int HEIGHT = 13;
 
     private Bomber player = new Bomber(1, 1);
     private GraphicsContext gc;
@@ -34,7 +39,7 @@ public class Bomberman extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Tao Canvas
-        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
+        canvas = new Canvas(Sprite.SCALED_SIZE*WIDTH, Sprite.SCALED_SIZE*HEIGHT);
         canvas.setFocusTraversable(true);
         gc = canvas.getGraphicsContext2D();
 
@@ -58,7 +63,7 @@ public class Bomberman extends Application {
         };
 
         timer.start();
-        createMap();
+        createMap(1);
 
     }
 
@@ -73,32 +78,58 @@ public class Bomberman extends Application {
     }
 
     private void update() {
+
         player.update(this);
         for (int i = 0; i < entities.size(); i++) {
             entities.get(i).update(this);
         }
     }
 
-    private void createMap() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                if (i == 0 || i == WIDTH - 1 || j == 0 || j == HEIGHT - 1) {
-                    stillEntities.add(new Wall(i, j));
-                } else {
-                    stillEntities.add(new Grass(i, j));
-                }
-            }
+    private void createMap(int level) throws IOException {
+        ClassLoader c = ClassLoader.getSystemClassLoader();
+        File file=new File(Objects.requireNonNull(c.getResource("levels/Level"+level+".txt")).getFile());
+        Scanner scanner = new Scanner(file);
+        System.out.println(scanner.nextInt());
+        HEIGHT=scanner.nextInt();
+        WIDTH= scanner.nextInt();
+        scanner.nextLine();
+        for (int i=0;i<HEIGHT;i++){
+           String line= scanner.nextLine();
+           for (int j=0;j<line.length();j++){
+               switch (line.charAt(j)){
+                   case '#':
+                       stillEntities.add(new Wall(j,i));
+                       break;
+                   case ' ':
+                       stillEntities.add(new Grass(j,i));
+                       break;
+                   case '*':
+                       stillEntities.add(new Grass(j,i));
+                       entities.add(new Brick(j,i));
+                       break;
+                   case '1':
+                       stillEntities.add(new Grass(j,i));
+                       entities.add(new Balloom(j,i));
+                       break;
+                   case '2':
+                       stillEntities.add(new Grass(j,i));
+                       entities.add(new Oneal(j,i));
+                       break;
+                   case 'x':
+                       stillEntities.add(new Grass(j,i));
+                       entities.add(new Portal(j,i));
+                       entities.add(new Brick(j,i));
+                       break;
+                   case 'p':
+                       entities.add(new Grass(j,i));
+                       player.setX(j);
+                       player.setY(i);
+                       break;
+               }
+
+           }
+           System.out.println(line);
         }
-        for (int i = 3; i < WIDTH - 3; i++) {
-            entities.add(new Brick(i, 3));
-        }
-        for (int i = 3; i < WIDTH - 3; i+=2) {
-            stillEntities.add(new Wall(i, 5));
-        }
-        for (int i = 3; i < WIDTH - 3; i+=2) {
-            stillEntities.add(new Wall(i, 7));
-        }
-        entities.add(new Balloom(17, 1));
     }
 
     public List<Entity> getEntities() {
@@ -131,4 +162,5 @@ public class Bomberman extends Application {
         if (getAt(x,y)==null|| getAt(x,y).isPassable()) return true;
         return false;
     }
+
 }

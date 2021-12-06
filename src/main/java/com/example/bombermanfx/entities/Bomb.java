@@ -2,6 +2,9 @@ package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.graphics.Sprite;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 
 public class Bomb extends Entity {
@@ -47,6 +50,7 @@ public class Bomb extends Entity {
 
 
     private void explode(Bomberman game) {
+
         currentBomb--;
         int xBomb = (int) this.x;
         int yBomb = (int) this.y;

@@ -7,21 +7,21 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 
 public class Bomber extends MovableEntity {
-    public static final double MAXSPEED=0.1;
+    public static final double MAXSPEED=0.08    ;
     public static final int MAXFLAMELENGTH=8;
     public static final int MAXBOMBS=8;
 
     private int life;
     private int flameLength;
     private int numberOfBombs;
-    private double fixingNumber=0.2;
 
     public Bomber(int x, int y) {
         super( x, y);
         this.speed=0.04;
-        this.flameLength=2  ;
-        this.numberOfBombs=2;
+        this.flameLength=1  ;
+        this.numberOfBombs=1;
         this.life=3;
+        this.fixingNumber=0.2;
         this.img=Sprite.player_down.getFxImage();
     }
 

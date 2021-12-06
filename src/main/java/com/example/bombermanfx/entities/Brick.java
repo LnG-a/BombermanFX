@@ -32,7 +32,7 @@ public class Brick extends Entity{
     }
 
     private void createItems(Bomberman game) {
-        int randomType = (int)(Math.random()*3);
+        int randomType = (int)(Math.random()*20);
         if (randomType<=2){
             game.getEntities().add(new Item(x,y, randomType));
         }
