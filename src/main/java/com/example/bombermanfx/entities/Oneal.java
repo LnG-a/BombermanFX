@@ -2,7 +2,6 @@ package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.graphics.Sprite;
-import javafx.scene.image.Image;
 
 public class Oneal extends MovableEntity{
     private long time=System.currentTimeMillis();
@@ -27,6 +26,7 @@ public class Oneal extends MovableEntity{
         for (Entity i:game.getEntities()){
             if (this.checkCollide(i)&&i.getClass().equals(Flame.class)) {
                 game.getEntities().remove(this);
+                game.enemies--;
                 break;
             }
         }

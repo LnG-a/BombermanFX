@@ -2,7 +2,6 @@ package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.graphics.Sprite;
-import javafx.scene.image.Image;
 
 public class Portal extends Entity{
     public Portal(double x, double y) {
@@ -12,11 +11,16 @@ public class Portal extends Entity{
 
     @Override
     public void update(Bomberman game) {
-
+        if (game.enemies==0&&this.checkCollide(game.getPlayer())){
+            game.setLevelUp(true);
+            game.getEntities().remove(this);
+        }
     }
 
     @Override
     public void dead(Bomberman game) {
 
     }
+
+
 }

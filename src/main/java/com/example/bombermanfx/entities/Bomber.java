@@ -27,7 +27,7 @@ public class Bomber extends MovableEntity {
 
     @Override
     public void update(Bomberman game) {
-        animation+=1;
+        animation++;
         /*if (!isMovingRight&&!isMovingLeft&&!isMovingUp&&!isMovingDown){
             if (x>=(int)x+1-fixingNumber) x = (int)x +1;
             else if (x<=(int)x+fixingNumber) x =(int) x;
@@ -96,17 +96,17 @@ public class Bomber extends MovableEntity {
         if (isMovingLeft) {
             moveLeft(game);
             this.img=Sprite.player_left.getFxImage();
-            this.img=Sprite.movingSprite(Sprite.player_left,Sprite.player_left_1,Sprite.player_left_2,animation,30).getFxImage();
+            this.img=Sprite.movingSprite(Sprite.player_left,Sprite.player_left_1,Sprite.player_left_2,animation,20).getFxImage();
         }
         if (isMovingDown) {
             moveDown(game);
             this.img=Sprite.player_down.getFxImage();
-            this.img=Sprite.movingSprite(Sprite.player_down,Sprite.player_down_1,Sprite.player_down_2,animation,30).getFxImage();
+            this.img=Sprite.movingSprite(Sprite.player_down,Sprite.player_down_1,Sprite.player_down_2,animation,20).getFxImage();
         }
         if (isMovingUp) {
             moveUp(game);
             this.img=Sprite.player_up.getFxImage();
-            this.img=Sprite.movingSprite(Sprite.player_up,Sprite.player_up_1,Sprite.player_up_2,animation,30).getFxImage();
+            this.img=Sprite.movingSprite(Sprite.player_up,Sprite.player_up_1,Sprite.player_up_2,animation,20).getFxImage();
         }
     }
 

@@ -26,11 +26,16 @@ public class Bomberman extends Application {
     public static int WIDTH = 31;
     public static int HEIGHT = 13;
 
+    public int LEVEL=1;
+    public boolean levelUp;
+    public int enemies=0;
+
     private Bomber player = new Bomber(1, 1);
     private GraphicsContext gc;
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
     private List<Entity> stillEntities = new ArrayList<>();
+    private Stage mainStage;
 
     public static void main(String[] args) {
         Application.launch(Bomberman.class);
@@ -38,6 +43,7 @@ public class Bomberman extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        this.mainStage=stage;
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE*WIDTH, Sprite.SCALED_SIZE*HEIGHT);
         canvas.setFocusTraversable(true);
@@ -56,14 +62,13 @@ public class Bomberman extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-
                 render();
                 update();
             }
         };
 
         timer.start();
-        createMap(1);
+        createMap(LEVEL);
 
     }
 
@@ -78,7 +83,15 @@ public class Bomberman extends Application {
     }
 
     private void update() {
-
+        if (levelUp) {
+            LEVEL++;
+            try {
+                levelUp=false;
+                createMap(LEVEL);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         player.update(this);
         for (int i = 0; i < entities.size(); i++) {
             entities.get(i).update(this);
@@ -89,10 +102,29 @@ public class Bomberman extends Application {
         ClassLoader c = ClassLoader.getSystemClassLoader();
         File file=new File(Objects.requireNonNull(c.getResource("levels/Level"+level+".txt")).getFile());
         Scanner scanner = new Scanner(file);
+
         System.out.println(scanner.nextInt());
         HEIGHT=scanner.nextInt();
         WIDTH= scanner.nextInt();
         scanner.nextLine();
+
+        //set size canvas
+        canvas.setHeight(Sprite.SCALED_SIZE* HEIGHT);
+        canvas.setWidth(Sprite.SCALED_SIZE*WIDTH);
+
+        // Tao root container
+        Group root = new Group();
+        root.getChildren().add(canvas);
+
+        // Tao scene
+        Scene scene = new Scene(root);
+
+        // Them scene vao stage
+        mainStage.setScene(scene);
+        mainStage.show();
+
+        reset();
+
         for (int i=0;i<HEIGHT;i++){
            String line= scanner.nextLine();
            for (int j=0;j<line.length();j++){
@@ -110,10 +142,12 @@ public class Bomberman extends Application {
                    case '1':
                        stillEntities.add(new Grass(j,i));
                        entities.add(new Balloom(j,i));
+                       enemies++;
                        break;
                    case '2':
                        stillEntities.add(new Grass(j,i));
                        entities.add(new Oneal(j,i));
+                       enemies++;
                        break;
                    case 'x':
                        stillEntities.add(new Grass(j,i));
@@ -128,7 +162,16 @@ public class Bomberman extends Application {
                }
 
            }
-           System.out.println(line);
+        }
+    }
+
+    private void reset() {
+        Bomb.currentBomb=0;
+        for (int i=0;i<entities.size();i++){
+            entities.remove(i);
+        }
+        for (int i=0;i<stillEntities.size();i++){
+            stillEntities.remove(i);
         }
     }
 
@@ -163,4 +206,7 @@ public class Bomberman extends Application {
         return false;
     }
 
+    public void setLevelUp(boolean levelUp) {
+        this.levelUp = levelUp;
+    }
 }

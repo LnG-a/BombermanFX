@@ -50,7 +50,6 @@ public class Bomb extends Entity {
 
 
     private void explode(Bomberman game) {
-
         currentBomb--;
         int xBomb = (int) this.x;
         int yBomb = (int) this.y;
