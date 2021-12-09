@@ -30,7 +30,6 @@ public class Bomber extends MovableEntity {
 
     @Override
     public void update(Bomberman game) {
-        dead(game);
         if (this.destroyed) {
             if (System.currentTimeMillis() > time + 450) {
                 this.img = Sprite.player_down.getFxImage();
@@ -44,8 +43,12 @@ public class Bomber extends MovableEntity {
             else if (System.currentTimeMillis() > time + 150) this.img = Sprite.player_dead_1.getFxImage();
             else this.img = Sprite.player_dead.getFxImage();
         } else {
+            //Time counting
             time = System.currentTimeMillis();
-            animation++;
+            if (animation<Integer.MAX_VALUE-1) animation++;
+            else animation=0;
+
+            //Keyboard input
             game.getCanvas().setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
                 public void handle(KeyEvent keyEvent) {
@@ -101,36 +104,36 @@ public class Bomber extends MovableEntity {
                     }
                 }
             });
+
+            //Move and Animation
             if (isMovingRight) {
                 moveRight(game);
                 this.img = Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, animation, 20).getFxImage();
             }
             if (isMovingLeft) {
                 moveLeft(game);
-                this.img = Sprite.player_left.getFxImage();
                 this.img = Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, animation, 20).getFxImage();
             }
             if (isMovingDown) {
                 moveDown(game);
-                this.img = Sprite.player_down.getFxImage();
                 this.img = Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2, animation, 20).getFxImage();
             }
             if (isMovingUp) {
                 moveUp(game);
-                this.img = Sprite.player_up.getFxImage();
                 this.img = Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, animation, 20).getFxImage();
+            }
+        }
+        for (Entity i : game.getEntities()) {
+            if (this.checkCollide(i) && i.getClass().equals(Flame.class)) {
+                dead(game);
+                break;
             }
         }
     }
 
     @Override
     public void dead(Bomberman game) {
-        for (Entity i : game.getEntities()) {
-            if (this.checkCollide(i) && i.getClass().equals(Flame.class)) {
-                this.destroyed = true;
-                break;
-            }
-        }
+        this.destroyed = true;
     }
 
     public void createBomb(Bomberman game) {
