@@ -19,11 +19,18 @@ public abstract class Enemy extends MovableEntity {
     public void update(Bomberman game) {
         calculateMove(game);
         //moveLeft(game);
+        dead(game);
     }
 
     @Override
     public void dead(Bomberman game) {
-
+        for (Entity i:game.getEntities()){
+            if (this.checkCollide(i)&&i.getClass().equals(Flame.class)) {
+                game.getEntities().remove(this);
+                game.enemies--;
+                break;
+            }
+        }
     }
 
     public void calculateMove(Bomberman game) {

@@ -87,7 +87,6 @@ public abstract class MovableEntity extends Entity {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
-
     public double getSpeed() {
         return speed;
     }

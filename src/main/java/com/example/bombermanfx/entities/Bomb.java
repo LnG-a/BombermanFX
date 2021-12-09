@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 public class Bomb extends Entity {
     public static int currentBomb = 0;
 
-    private final long time;
     private final int flameLength;
     
     public Bomb(int x, int y, int flameLength) {
@@ -57,7 +56,7 @@ public class Bomb extends Entity {
         game.getEntities().add(new Flame(xBomb, yBomb,Flame.CENTER));
 
         for (int i = xBomb - 1; i >= xBomb - flameLength; i--) {
-            Entity a = game.getAt(i, yBomb);
+            Entity a = game.getObstacle(i, yBomb);
             if (a!= null&&!a.isPassable()){
                 a.dead(game);
                 break;
@@ -71,7 +70,7 @@ public class Bomb extends Entity {
         }
 
         for (int i = xBomb + 1; i <= xBomb + flameLength; i++) {
-            Entity a = game.getAt(i, yBomb);
+            Entity a = game.getObstacle(i, yBomb);
             if (a!= null&&!a.isPassable()){
                 a.dead(game);
                 break;
@@ -85,7 +84,7 @@ public class Bomb extends Entity {
         }
 
         for (int i = yBomb - 1; i >= yBomb - flameLength; i--) {
-            Entity a = game.getAt(xBomb, i);
+            Entity a = game.getObstacle(xBomb, i);
             if (a!= null&&!a.isPassable()){
                 a.dead(game);
                 break;
@@ -98,7 +97,7 @@ public class Bomb extends Entity {
         }
 
         for (int i = yBomb + 1; i <= yBomb + flameLength; i++) {
-            Entity a = game.getAt(xBomb, i);
+            Entity a = game.getObstacle(xBomb, i);
             if (a!= null&&!a.isPassable()){
                 a.dead(game);
                 break;

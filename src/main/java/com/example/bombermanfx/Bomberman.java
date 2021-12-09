@@ -91,19 +91,20 @@ public class Bomberman extends Application {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        player.update(this);
-        for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).update(this);
+        } else {
+            player.update(this);
+            for (int i = 0; i < entities.size(); i++) {
+                entities.get(i).update(this);
+            }
         }
     }
 
-    private void createMap(int level) throws IOException {
+    public void createMap(int level) throws IOException {
         ClassLoader c = ClassLoader.getSystemClassLoader();
         File file=new File(Objects.requireNonNull(c.getResource("levels/Level"+level+".txt")).getFile());
         Scanner scanner = new Scanner(file);
 
-        System.out.println(scanner.nextInt());
+        scanner.nextInt();
         HEIGHT=scanner.nextInt();
         WIDTH= scanner.nextInt();
         scanner.nextLine();
@@ -167,12 +168,8 @@ public class Bomberman extends Application {
 
     private void reset() {
         Bomb.currentBomb=0;
-        for (int i=0;i<entities.size();i++){
-            entities.remove(i);
-        }
-        for (int i=0;i<stillEntities.size();i++){
-            stillEntities.remove(i);
-        }
+        entities=new ArrayList<>();
+        stillEntities=new ArrayList<>();
     }
 
     public List<Entity> getEntities() {
@@ -191,7 +188,7 @@ public class Bomberman extends Application {
         return player;
     }
 
-    public Entity getAt(int x, int y) {
+    public Entity getObstacle(int x, int y) {
         for (Entity i : this.getEntities()) {
             if (i.getX() == x && i.getY() == y && (!i.isPassable()||i.getClass().equals(Bomb.class))) return i;
         }
@@ -202,7 +199,7 @@ public class Bomberman extends Application {
     }
 
     public boolean validatePosition(int x, int y) {
-        if (getAt(x,y)==null|| getAt(x,y).isPassable()) return true;
+        if (getObstacle(x,y)==null|| getObstacle(x,y).isPassable()) return true;
         return false;
     }
 

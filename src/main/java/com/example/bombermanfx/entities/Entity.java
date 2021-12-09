@@ -18,7 +18,9 @@ public abstract class Entity {
 
     protected Image img;
     protected boolean passable;
+    protected boolean destroyed=false;
     protected int animation=0;
+    protected long time;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity(double x, double y) {
@@ -49,7 +51,7 @@ public abstract class Entity {
 
     public abstract void update(Bomberman game);
 
-    public abstract void dead(Bomberman game);
+    public void dead(Bomberman game){}
 
     public boolean isPassable() {
         return passable;

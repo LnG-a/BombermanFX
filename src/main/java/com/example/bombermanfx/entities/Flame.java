@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 
 public class Flame extends Entity{
     private final int type;
-    private final long time;
     public static final int CENTER=0;
     public static final int VERTICAL=1;
     public static final int HORIZONTAL=2;
@@ -24,15 +23,6 @@ public class Flame extends Entity{
             {Sprite.explosion_horizontal_left_last.getFxImage(),Sprite.explosion_horizontal_left_last_1.getFxImage(),Sprite.explosion_horizontal_left_last_2.getFxImage()},
             {Sprite.explosion_vertical_top_last.getFxImage(),Sprite.explosion_vertical_top_last_1.getFxImage(),Sprite.explosion_vertical_top_last_2.getFxImage()},
             {Sprite.explosion_vertical_down_last.getFxImage(),Sprite.explosion_vertical_down_last_1.getFxImage(),Sprite.explosion_vertical_down_last_2.getFxImage()}};
-    /*enum Direction{
-        CENTER,
-        VERTICAL,
-        HORIZONTAL,
-        RIGHT,
-        LEFT,
-        UP,
-        DOWN
-    }*/
 
     public Flame(int xUnit, int yUnit,int type) {
         super(xUnit, yUnit);
@@ -48,11 +38,9 @@ public class Flame extends Entity{
         else if (System.currentTimeMillis()>time+200) this.img=flameAnimation[type][2];
         else if (System.currentTimeMillis()>time+100) this.img=flameAnimation[type][1];
         else this.img=flameAnimation[type][0];
-
     }
 
     @Override
     public void dead(Bomberman game) {
-
     }
 }

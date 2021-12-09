@@ -11,11 +11,4 @@ public class Balloom extends Enemy {
         this.img = Sprite.balloom_left1.getFxImage();
         this.ai = new AILow();
     }
-
-
-
-    @Override
-    public void dead(Bomberman game) {
-
-    }
 }

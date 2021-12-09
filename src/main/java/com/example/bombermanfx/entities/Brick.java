@@ -5,8 +5,6 @@ import com.example.bombermanfx.graphics.Sprite;
 import javafx.scene.image.Image;
 
 public class Brick extends Entity{
-    private boolean destroyed=false;
-    private long time;
     public Brick(double x, double y) {
         super(x, y);
         setPassable(false);
