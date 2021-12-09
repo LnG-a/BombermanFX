@@ -123,8 +123,9 @@ public class Bomber extends MovableEntity {
                 this.img = Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, animation, 20).getFxImage();
             }
         }
+        //Check dead by Flame
         for (Entity i : game.getEntities()) {
-            if (this.checkCollide(i) && i.getClass().equals(Flame.class)) {
+            if (i.getX()==autoFix(x)&& i.getY()==autoFix(y) && i.getClass().equals(Flame.class)) {
                 dead(game);
                 break;
             }
@@ -137,17 +138,19 @@ public class Bomber extends MovableEntity {
     }
 
     public void createBomb(Bomberman game) {
-        int xBomb = (int) this.x;
-        int yBomb = (int) this.y;
-        double next = x % 1;
-        if (next >= 0.5) xBomb++;
-        next = this.y % 1;
-        if (next >= 0.5) yBomb++;
-        if (game.getObstacle(xBomb, yBomb) == null) {
+        int xBomb = autoFix(x);
+        int yBomb = autoFix(y);
+        if (game.getObstacle(xBomb,yBomb) == null) {
             game.getEntities().add(new Bomb(xBomb, yBomb, this.flameLength));
         }
     }
 
+    private int autoFix(double x){
+        int fixedX= (int) x;
+        double next = x % 1;
+        if (next >= 0.5) fixedX++;
+        return fixedX;
+    }
 
     public void setFlameLength(int flameLength) {
         this.flameLength = flameLength;

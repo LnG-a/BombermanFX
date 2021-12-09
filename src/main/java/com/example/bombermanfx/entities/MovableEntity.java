@@ -48,7 +48,7 @@ public abstract class MovableEntity extends Entity {
     public void moveUp(Bomberman game) {
         double afterY = y - speed;
         if (x>=(int)x+1-fixingNumber) x = (int)x +1;
-        else if (x<=(int)x+fixingNumber+0.05) x =(int) x;
+        else if (x<=(int)x+fixingNumber) x =(int) x;
         //if (afterY<=(int)afterY+fixingNumber) afterY=(int)afterY;
         if (canMove(game, x, afterY)) {
             y = afterY;
@@ -60,7 +60,7 @@ public abstract class MovableEntity extends Entity {
     public void moveDown(Bomberman game) {
         double afterY = y + speed;
         if (x>=(int)x+1-fixingNumber) x = (int)x +1;
-        else if (x<=(int)x+fixingNumber+0.05) x =(int) x;
+        else if (x<=(int)x+fixingNumber) x =(int) x;
         //if (afterY>=(int)afterY+1-fixingNumber) afterY=(int)afterY+1;
         if (canMove(game, x, afterY)) {
             y = afterY;

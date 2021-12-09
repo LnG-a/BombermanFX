@@ -190,7 +190,7 @@ public class Bomberman extends Application {
 
     public Entity getObstacle(int x, int y) {
         for (Entity i : this.getEntities()) {
-            if (i.getX() == x && i.getY() == y && (!i.isPassable()||i.getClass().equals(Bomb.class))) return i;
+            if (i.getX() == x && i.getY() == y && (i.getClass().equals(Brick.class)||i.getClass().equals(Bomb.class))) return i;
         }
         for (Entity i : this.getStillEntities()) {
             if (i.getX() == x && i.getY() == y && i.getClass().equals(Wall.class)) return i;
