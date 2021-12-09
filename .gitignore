@@ -24,3 +24,5 @@ target/classes/target/classes/res/sprites/player_down.png
 target/classes/target/classes/res/sprites/player_down_1.png
 target/classes/target/classes/sprites/player_down.png
 target/classes/target/classes/sprites/player_down_1.png
+target/classes/com/example/bombermanfx/Bomberman.class
+target/classes/com/example/bombermanfx/entities/Oneal.class
