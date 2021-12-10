@@ -30,24 +30,22 @@ public class Bomber extends MovableEntity {
 
     @Override
     public void update(Bomberman game) {
-        if (this.destroyed) {
-            if (System.currentTimeMillis() > time + 450) {
+        if (animation<Integer.MAX_VALUE-1) animation++;
+        else animation=0;
 
+        if (this.destroyed) {
+            if (animation> 28) animation=0;
+            if (animation > 27) {
+                reset();
+                this.life--;
                 try {
                     game.createMap(game.LEVEL);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 destroyed = false;
-            } else if (System.currentTimeMillis() > time + 300) this.img = Sprite.player_dead_2.getFxImage();
-            else if (System.currentTimeMillis() > time + 150) this.img = Sprite.player_dead_1.getFxImage();
-            else this.img = Sprite.player_dead.getFxImage();
+            } else this.img=Sprite.movingSprite(Sprite.player_dead,Sprite.player_dead_1,Sprite.player_dead_2,animation,27).getFxImage();
         } else {
-            //Time counting
-            time = System.currentTimeMillis();
-            if (animation<Integer.MAX_VALUE-1) animation++;
-            else animation=0;
-
             //Keyboard input
             game.getCanvas().setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
@@ -138,8 +136,6 @@ public class Bomber extends MovableEntity {
 
     @Override
     public void dead(Bomberman game) {
-        reset();
-        this.life--;
         this.destroyed = true;
     }
 
