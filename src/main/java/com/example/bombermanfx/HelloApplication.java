@@ -20,10 +20,6 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-        /*Media media = new Media(new File("D:\\E-Learning\\OOP\\BombermanFX\\res\\audio\\explosion.mp3").toURI().toString());
-        mediaPlayer= new MediaPlayer(media);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();*/
     }
 
     public static void main(String[] args) {

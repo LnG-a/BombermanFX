@@ -2,6 +2,7 @@ package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.graphics.Sprite;
+import com.example.bombermanfx.sounds.SoundPlayer;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
@@ -17,7 +18,6 @@ public class Bomber extends MovableEntity {
     private int flameLength;
     private int numberOfBombs;
 
-
     public Bomber(int x, int y) {
         super(x, y);
         this.speed = 0.04;
@@ -32,7 +32,7 @@ public class Bomber extends MovableEntity {
     public void update(Bomberman game) {
         if (this.destroyed) {
             if (System.currentTimeMillis() > time + 450) {
-                this.img = Sprite.player_down.getFxImage();
+
                 try {
                     game.createMap(game.LEVEL);
                 } catch (IOException e) {
@@ -105,22 +105,26 @@ public class Bomber extends MovableEntity {
                 }
             });
 
-            //Move and Animation
+            //Move, animation and sound effects
             if (isMovingRight) {
                 moveRight(game);
                 this.img = Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, animation, 20).getFxImage();
+                if (animation%20==0) SoundPlayer.moveRightLeft();
             }
             if (isMovingLeft) {
                 moveLeft(game);
                 this.img = Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, animation, 20).getFxImage();
+                if (animation%20==0) SoundPlayer.moveRightLeft();
             }
             if (isMovingDown) {
                 moveDown(game);
                 this.img = Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2, animation, 20).getFxImage();
+                if (animation%20==0) SoundPlayer.moveUpDown();
             }
             if (isMovingUp) {
                 moveUp(game);
                 this.img = Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, animation, 20).getFxImage();
+                if (animation%20==0) SoundPlayer.moveUpDown();
             }
         }
         //Check dead by Flame
@@ -134,6 +138,8 @@ public class Bomber extends MovableEntity {
 
     @Override
     public void dead(Bomberman game) {
+        reset();
+        this.life--;
         this.destroyed = true;
     }
 
@@ -178,5 +184,12 @@ public class Bomber extends MovableEntity {
 
     private boolean canCreateBomb() {
         return numberOfBombs > Bomb.currentBomb;
+    }
+
+    public void reset() {
+        this.speed = 0.04;
+        this.flameLength = 1;
+        this.numberOfBombs = 1;
+        this.img = Sprite.player_down.getFxImage();
     }
 }
