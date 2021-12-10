@@ -2,6 +2,7 @@ package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.graphics.Sprite;
+import com.example.bombermanfx.sounds.SoundPlayer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -49,12 +50,17 @@ public class Bomb extends Entity {
 
 
     private void explode(Bomberman game) {
+        //Play sound
+        SoundPlayer.play();
+
+        //Remove bomb and standardize x,y
         currentBomb--;
         int xBomb = (int) this.x;
         int yBomb = (int) this.y;
         game.getEntities().remove(this);
-        game.getEntities().add(new Flame(xBomb, yBomb,Flame.CENTER));
 
+        //Create flame
+        game.getEntities().add(new Flame(xBomb, yBomb,Flame.CENTER));
         for (int i = xBomb - 1; i >= xBomb - flameLength; i--) {
             Entity a = game.getObstacle(i, yBomb);
             if (a!= null&&!a.isPassable()){

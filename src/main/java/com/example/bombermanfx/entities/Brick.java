@@ -17,6 +17,7 @@ public class Brick extends Entity{
             if (System.currentTimeMillis()>time+300) {
                 createItems(game);
                 game.getEntities().remove(this);
+                game.getStillEntities().add(new Grass(x,y));
             }
             else if (System.currentTimeMillis()>time+200) this.img=Sprite.brick_exploded_2.getFxImage();
             else if (System.currentTimeMillis()>time+100) this.img=Sprite.brick_exploded_1.getFxImage();

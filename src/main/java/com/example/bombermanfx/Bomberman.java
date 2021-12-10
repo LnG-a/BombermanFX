@@ -2,6 +2,7 @@ package com.example.bombermanfx;
 
 import com.example.bombermanfx.entities.*;
 import com.example.bombermanfx.graphics.*;
+import com.example.bombermanfx.sounds.SoundPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -10,6 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -43,6 +47,10 @@ public class Bomberman extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        /*Media buzzer = new Media(getClass().getResource("audio/explosion.mp3").toExternalForm());
+        MediaPlayer mediaPlayer = new MediaPlayer(buzzer);
+        mediaPlayer.play();*/
+
         this.mainStage=stage;
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE*WIDTH, Sprite.SCALED_SIZE*HEIGHT);
@@ -100,6 +108,9 @@ public class Bomberman extends Application {
     }
 
     public void createMap(int level) throws IOException {
+        /*Media buzzer = new Media(getClass().getResource("D:\\E-Learning\\OOP\\BombermanFX\\res\\audio\\explosion.mp3").toExternalForm());
+        MediaPlayer mediaPlayer = new MediaPlayer(buzzer);
+        mediaPlayer.play();*/
         ClassLoader c = ClassLoader.getSystemClassLoader();
         File file=new File(Objects.requireNonNull(c.getResource("levels/Level"+level+".txt")).getFile());
         Scanner scanner = new Scanner(file);
@@ -137,7 +148,7 @@ public class Bomberman extends Application {
                        stillEntities.add(new Grass(j,i));
                        break;
                    case '*':
-                       stillEntities.add(new Grass(j,i));
+                       //stillEntities.add(new Grass(j,i));
                        entities.add(new Brick(j,i));
                        break;
                    case '1':
@@ -151,7 +162,7 @@ public class Bomberman extends Application {
                        enemies++;
                        break;
                    case 'x':
-                       stillEntities.add(new Grass(j,i));
+                       //stillEntities.add(new Grass(j,i));
                        entities.add(new Portal(j,i));
                        entities.add(new Brick(j,i));
                        break;
