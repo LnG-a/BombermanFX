@@ -51,7 +51,7 @@ public class Bomb extends Entity {
 
     private void explode(Bomberman game) {
         //Play sound
-        SoundPlayer.play();
+        SoundPlayer.explosion();
 
         //Remove bomb and standardize x,y
         currentBomb--;

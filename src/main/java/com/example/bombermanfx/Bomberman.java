@@ -1,7 +1,7 @@
 package com.example.bombermanfx;
 
 import com.example.bombermanfx.entities.*;
-import com.example.bombermanfx.graphics.*;
+import com.example.bombermanfx.graphics.Sprite;
 import com.example.bombermanfx.sounds.SoundPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -47,10 +47,8 @@ public class Bomberman extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        /*Media buzzer = new Media(getClass().getResource("audio/explosion.mp3").toExternalForm());
-        MediaPlayer mediaPlayer = new MediaPlayer(buzzer);
-        mediaPlayer.play();*/
-
+        //Theme song
+        SoundPlayer.themeSong();
         this.mainStage=stage;
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE*WIDTH, Sprite.SCALED_SIZE*HEIGHT);
@@ -108,7 +106,7 @@ public class Bomberman extends Application {
     }
 
     public void createMap(int level) throws IOException {
-        /*Media buzzer = new Media(getClass().getResource("D:\\E-Learning\\OOP\\BombermanFX\\res\\audio\\explosion.mp3").toExternalForm());
+        /*Media buzzer = new Media(getClass().getClassLoader().getResource("/audio/explosion.mp3").toExternalForm());
         MediaPlayer mediaPlayer = new MediaPlayer(buzzer);
         mediaPlayer.play();*/
         ClassLoader c = ClassLoader.getSystemClassLoader();

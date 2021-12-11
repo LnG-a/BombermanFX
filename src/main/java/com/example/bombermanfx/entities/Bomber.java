@@ -2,6 +2,7 @@ package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.graphics.Sprite;
+import com.example.bombermanfx.sounds.SoundPlayer;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
@@ -17,7 +18,6 @@ public class Bomber extends MovableEntity {
     private int flameLength;
     private int numberOfBombs;
 
-
     public Bomber(int x, int y) {
         super(x, y);
         this.speed = 0.04;
@@ -30,24 +30,22 @@ public class Bomber extends MovableEntity {
 
     @Override
     public void update(Bomberman game) {
+        if (animation<Integer.MAX_VALUE-1) animation++;
+        else animation=0;
+
         if (this.destroyed) {
-            if (System.currentTimeMillis() > time + 450) {
-                this.img = Sprite.player_down.getFxImage();
+            if (animation> 28) animation=0;
+            if (animation > 27) {
+                reset();
+                this.life--;
                 try {
                     game.createMap(game.LEVEL);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 destroyed = false;
-            } else if (System.currentTimeMillis() > time + 300) this.img = Sprite.player_dead_2.getFxImage();
-            else if (System.currentTimeMillis() > time + 150) this.img = Sprite.player_dead_1.getFxImage();
-            else this.img = Sprite.player_dead.getFxImage();
+            } else this.img=Sprite.movingSprite(Sprite.player_dead,Sprite.player_dead_1,Sprite.player_dead_2,animation,27).getFxImage();
         } else {
-            //Time counting
-            time = System.currentTimeMillis();
-            if (animation<Integer.MAX_VALUE-1) animation++;
-            else animation=0;
-
             //Keyboard input
             game.getCanvas().setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
@@ -105,22 +103,26 @@ public class Bomber extends MovableEntity {
                 }
             });
 
-            //Move and Animation
+            //Move, animation and sound effects
             if (isMovingRight) {
                 moveRight(game);
                 this.img = Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, animation, 20).getFxImage();
+                if (animation%20==0) SoundPlayer.moveRightLeft();
             }
             if (isMovingLeft) {
                 moveLeft(game);
                 this.img = Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, animation, 20).getFxImage();
+                if (animation%20==0) SoundPlayer.moveRightLeft();
             }
             if (isMovingDown) {
                 moveDown(game);
                 this.img = Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2, animation, 20).getFxImage();
+                if (animation%20==0) SoundPlayer.moveUpDown();
             }
             if (isMovingUp) {
                 moveUp(game);
                 this.img = Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, animation, 20).getFxImage();
+                if (animation%20==0) SoundPlayer.moveUpDown();
             }
         }
         //Check dead by Flame
@@ -178,5 +180,12 @@ public class Bomber extends MovableEntity {
 
     private boolean canCreateBomb() {
         return numberOfBombs > Bomb.currentBomb;
+    }
+
+    public void reset() {
+        this.speed = 0.04;
+        this.flameLength = 1;
+        this.numberOfBombs = 1;
+        this.img = Sprite.player_down.getFxImage();
     }
 }

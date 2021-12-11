@@ -24,6 +24,7 @@ public abstract class MovableEntity extends Entity {
     public void moveRight(Bomberman game) {
         double afterX = x + speed;
         //if (afterX>=(int)afterX+1-fixingNumber) afterX=(int) afterX+1;
+
         if (y<=(int) y+fixingNumber) y =(int) y;
         else if (y>=(int)y+1-fixingNumber) y=(int) y+1;
         if (canMove(game, afterX, y)) {
