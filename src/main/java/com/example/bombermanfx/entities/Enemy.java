@@ -44,7 +44,7 @@ public abstract class Enemy extends MovableEntity {
             calculateMove(game);
             //Check dead by flame
             if (this.checkCollide(game.getPlayer())) game.getPlayer().dead();
-            checkDeadByFlame(games);
+            checkDeadByFlame(game);
         }
     }
 
