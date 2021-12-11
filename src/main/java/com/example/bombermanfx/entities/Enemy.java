@@ -9,8 +9,9 @@ public abstract class Enemy extends MovableEntity {
     protected int steps;
     protected final int MAX_STEP;
     protected Sprite[] enemyAnimation;
+    protected Sprite deadSprite;
     protected boolean spriteDirection = true;
-    protected int life = 2;
+    protected int life=1;
 
     public Enemy(double x, double y, double speed) {
         super(x, y);
@@ -21,20 +22,31 @@ public abstract class Enemy extends MovableEntity {
 
     @Override
     public void update(Bomberman game) {
-        //System.out.println("Moving : " + x + " " + y);
-        if (animation<Integer.MAX_VALUE-1) animation++;
-        else animation=0;
-        calculateMove(game);
-        dead(game);
-    }
+        if (animation < Integer.MAX_VALUE - 1) animation++;
+        else animation = 0;
 
-    @Override
-    public void dead(Bomberman game) {
-        for (Entity i:game.getEntities()){
-            if (this.checkCollide(i)&&i.getClass().equals(Flame.class)) {
-                game.getEntities().remove(this);
-                game.enemies--;
-                break;
+        if (destroyed){
+            if (this.life==1) this.life--;
+            if (this.life==0) {
+                if (animation > animationDead) {
+                    animation = -60;
+                }
+                if (animation >= animationDead) {
+                    game.getEntities().remove(this);
+                    game.enemies--;
+                } else if (animation>=0){
+                    this.img = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animation, animationDead).getFxImage();
+                } else this.img=deadSprite.getFxImage();
+            }
+        } else {
+            calculateMove(game);
+            //Check dead by flame
+            if (this.checkCollide(game.getPlayer())) game.getPlayer().dead();
+            for (Entity i : game.getEntities()) {
+                if (this.checkCollide(i) && i.getClass().equals(Flame.class)) {
+                    this.destroyed = true;
+                    break;
+                }
             }
         }
     }
@@ -81,8 +93,8 @@ public abstract class Enemy extends MovableEntity {
                 moveRight(game);
                 spriteDirection = true;
             }
-            if (spriteDirection) this.img = Sprite.movingSprite(enemyAnimation[0], enemyAnimation[1], enemyAnimation[2], animation, 20).getFxImage();
-            else this.img = Sprite.movingSprite(enemyAnimation[3], enemyAnimation[4], enemyAnimation[5], animation, 20).getFxImage();
+            if (spriteDirection) this.img = Sprite.movingSprite(enemyAnimation[0], enemyAnimation[1], enemyAnimation[2], animation, 35).getFxImage();
+            else this.img = Sprite.movingSprite(enemyAnimation[3], enemyAnimation[4], enemyAnimation[5], animation, 35).getFxImage();
                 steps--;
         }
 

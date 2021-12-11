@@ -2,12 +2,9 @@ package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.graphics.Sprite;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
 
 public abstract class Entity {
     //Tọa độ X tính từ góc trái trên trong Canvas
@@ -51,7 +48,9 @@ public abstract class Entity {
 
     public abstract void update(Bomberman game);
 
-    public void dead(Bomberman game){}
+    public void dead(){
+        this.destroyed=true;
+    }
 
     public boolean isPassable() {
         return passable;

@@ -45,9 +45,4 @@ public  class Item extends Entity{
         }
     }
 
-    @Override
-    public void dead(Bomberman game) {
-
-    }
-
 }

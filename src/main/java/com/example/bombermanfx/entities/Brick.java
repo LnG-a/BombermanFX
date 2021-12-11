@@ -2,7 +2,6 @@ package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.graphics.Sprite;
-import javafx.scene.image.Image;
 
 public class Brick extends Entity{
     public Brick(double x, double y) {
@@ -23,11 +22,6 @@ public class Brick extends Entity{
             else if (System.currentTimeMillis()>time+100) this.img=Sprite.brick_exploded_1.getFxImage();
             else this.img=Sprite.brick_exploded.getFxImage();
         } else time=System.currentTimeMillis();
-    }
-
-    @Override
-    public void dead(Bomberman game) {
-        this.destroyed =true;
     }
 
     private void createItems(Bomberman game) {

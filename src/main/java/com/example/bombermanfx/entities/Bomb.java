@@ -3,10 +3,6 @@ package com.example.bombermanfx.entities;
 import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.graphics.Sprite;
 import com.example.bombermanfx.sounds.SoundPlayer;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.image.Image;
 
 public class Bomb extends Entity {
     public static int currentBomb = 0;
@@ -23,6 +19,10 @@ public class Bomb extends Entity {
     @Override
     public void update(Bomberman game) {
         animation+=1;
+        if (destroyed){
+            explode(game);
+            destroyed=false;
+        }
         if (time < System.currentTimeMillis() - 2000) explode(game);
         else {
             for (Entity i:game.getEntities()){
@@ -33,12 +33,12 @@ public class Bomb extends Entity {
             }
         }
         if (checkPassable(game)) setPassable(false);
-        this.img=Sprite.movingSprite(Sprite.bomb,Sprite.bomb_1,Sprite.bomb_2,animation,30).getFxImage();// ~6 FPS because in 1s animation +=60 and everytime animation+= 30/3: next frame.
+        this.img=Sprite.movingSprite(Sprite.bomb_2,Sprite.bomb_1,Sprite.bomb,animation,30).getFxImage();// ~6 FPS because in 1s animation +=60 and everytime animation+= 30/3: next frame.
     }
 
     @Override
-    public void dead(Bomberman game) {
-        explode(game);
+    public void dead() {
+        this.destroyed=true;
     }
 
     private boolean checkPassable(Bomberman game) {
@@ -64,7 +64,7 @@ public class Bomb extends Entity {
         for (int i = xBomb - 1; i >= xBomb - flameLength; i--) {
             Entity a = game.getObstacle(i, yBomb);
             if (a!= null&&!a.isPassable()){
-                a.dead(game);
+                a.dead();
                 break;
             }
             if (i == xBomb - flameLength) {
@@ -78,7 +78,7 @@ public class Bomb extends Entity {
         for (int i = xBomb + 1; i <= xBomb + flameLength; i++) {
             Entity a = game.getObstacle(i, yBomb);
             if (a!= null&&!a.isPassable()){
-                a.dead(game);
+                a.dead();
                 break;
             }
 
@@ -92,7 +92,7 @@ public class Bomb extends Entity {
         for (int i = yBomb - 1; i >= yBomb - flameLength; i--) {
             Entity a = game.getObstacle(xBomb, i);
             if (a!= null&&!a.isPassable()){
-                a.dead(game);
+                a.dead();
                 break;
             }
             if (i == yBomb - flameLength) {
@@ -105,7 +105,7 @@ public class Bomb extends Entity {
         for (int i = yBomb + 1; i <= yBomb + flameLength; i++) {
             Entity a = game.getObstacle(xBomb, i);
             if (a!= null&&!a.isPassable()){
-                a.dead(game);
+                a.dead();
                 break;
             }
             if (i == yBomb + flameLength) {
