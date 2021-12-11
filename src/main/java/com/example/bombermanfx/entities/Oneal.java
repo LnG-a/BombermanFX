@@ -10,5 +10,6 @@ public class Oneal extends Enemy {
         this.ai = new AIMedium();
         this.enemyAnimation= new Sprite[]{Sprite.oneal_right1,Sprite.oneal_right2,Sprite.oneal_right3,Sprite.oneal_left1,Sprite.oneal_left2,Sprite.oneal_left3};
         this.deadSprite= Sprite.oneal_dead;
+        this.point=200;
     }
 }

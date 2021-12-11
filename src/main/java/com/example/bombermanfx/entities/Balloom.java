@@ -10,5 +10,6 @@ public class Balloom extends Enemy {
         this.ai = new AILow();
         this.enemyAnimation= new Sprite[]{Sprite.balloom_right1,Sprite.balloom_right2,Sprite.balloom_right3,Sprite.balloom_left1,Sprite.balloom_left2,Sprite.balloom_left3};
         this.deadSprite=Sprite.balloom_dead;
+        this.point=100;
     }
 }

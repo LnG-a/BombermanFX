@@ -12,12 +12,16 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -26,10 +30,13 @@ import java.util.Scanner;
 public class Bomberman extends Application {
     public static int WIDTH = 31;
     public static int HEIGHT = 13;
+    private static Font fontRetro = Font.loadFont(Bomberman.class.getResource("/font/Fipps-Regular.otf").toExternalForm(),30);;
+
 
     public int LEVEL=1;
     public boolean levelUp;
     public int enemies=0;
+    public int SCORE=0;
 
     private Bomber player = new Bomber(1, 1);
     private GraphicsContext gc;
@@ -47,6 +54,8 @@ public class Bomberman extends Application {
         //Theme song
         SoundPlayer.themeSong();
         this.mainStage=stage;
+
+
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE*WIDTH, Sprite.SCALED_SIZE*HEIGHT);
         canvas.setFocusTraversable(true);
@@ -62,6 +71,11 @@ public class Bomberman extends Application {
         // Them scene vao stage
         stage.setScene(scene);
         stage.show();
+
+        // Set font
+        gc.setFont(fontRetro);
+
+        //Main loop
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -72,6 +86,7 @@ public class Bomberman extends Application {
 
         timer.start();
         createMap(LEVEL);
+
 
     }
 
@@ -86,6 +101,7 @@ public class Bomberman extends Application {
     }
 
     private void update() {
+        updateStat();
         if (levelUp) {
             LEVEL++;
             try {
@@ -103,9 +119,6 @@ public class Bomberman extends Application {
     }
 
     public void createMap(int level) throws IOException {
-        /*Media buzzer = new Media(getClass().getClassLoader().getResource("/audio/explosion.mp3").toExternalForm());
-        MediaPlayer mediaPlayer = new MediaPlayer(buzzer);
-        mediaPlayer.play();*/
         ClassLoader c = ClassLoader.getSystemClassLoader();
         File file=new File(Objects.requireNonNull(c.getResource("levels/Level"+level+".txt")).getFile());
         Scanner scanner = new Scanner(file);
@@ -116,8 +129,11 @@ public class Bomberman extends Application {
         scanner.nextLine();
 
         //set size canvas
-        canvas.setHeight(Sprite.SCALED_SIZE* HEIGHT);
+        canvas.setHeight(Sprite.SCALED_SIZE* HEIGHT+100);
         canvas.setWidth(Sprite.SCALED_SIZE*WIDTH);
+
+
+
 
         // Tao root container
         Group root = new Group();
@@ -167,9 +183,9 @@ public class Bomberman extends Application {
                        player.setY(i);
                        break;
                }
-
            }
         }
+        //System.out.println(enemies);
     }
 
     private void reset() {
@@ -225,5 +241,17 @@ public class Bomberman extends Application {
 
     public void setLevelUp(boolean levelUp) {
         this.levelUp = levelUp;
+    }
+
+    private void updateStat(){
+        gc.setFill(Color.rgb(185,185,185));
+        gc.fillRect(0, canvas.getHeight()-100, canvas.getWidth(), 100);
+        gc.setFill(Color.rgb(0,0,0));
+        gc.setTextAlign(TextAlignment.LEFT);
+        gc.fillText("Level "+LEVEL,50,canvas.getHeight()-30);
+        gc.setTextAlign(TextAlignment.RIGHT);
+        gc.fillText("Left " +(player.getLife()-1),canvas.getWidth() - 50,canvas.getHeight()-30);
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.fillText(SCORE+"",canvas.getWidth()/2,canvas.getHeight()-30);
     }
 }

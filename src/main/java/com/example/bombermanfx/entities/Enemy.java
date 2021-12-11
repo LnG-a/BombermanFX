@@ -11,12 +11,13 @@ public abstract class Enemy extends MovableEntity {
     protected Sprite[] enemyAnimation;
     protected Sprite deadSprite;
     protected boolean spriteDirection = true;
-    protected int life=1;
+    protected int life = 1;
+    protected int point = 100;
 
     public Enemy(double x, double y, double speed) {
         super(x, y);
         this.speed = speed;
-        MAX_STEP = (int)(1 / speed);
+        MAX_STEP = (int) (1 / speed);
         steps = 0;
     }
 
@@ -25,18 +26,19 @@ public abstract class Enemy extends MovableEntity {
         if (animation < Integer.MAX_VALUE - 1) animation++;
         else animation = 0;
 
-        if (destroyed){
-            if (this.life==1) this.life--;
-            if (this.life==0) {
+        if (destroyed) {
+            if (this.life == 1) this.life--;
+            if (this.life == 0) {
                 if (animation > animationDead) {
                     animation = -60;
                 }
                 if (animation >= animationDead) {
                     game.getEntities().remove(this);
                     game.enemies--;
-                } else if (animation>=0){
+                    game.SCORE+=this.point;
+                } else if (animation >= 0) {
                     this.img = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animation, animationDead).getFxImage();
-                } else this.img=deadSprite.getFxImage();
+                } else this.img = deadSprite.getFxImage();
             }
         } else {
             calculateMove(game);
@@ -81,22 +83,21 @@ public abstract class Enemy extends MovableEntity {
                 }
             }
             steps = MAX_STEP;
-        }
-        else {
+        } else {
             if (isMovingUp) moveUp(game);
             else if (isMovingDown) moveDown(game);
             else if (isMovingLeft) {
                 moveLeft(game);
                 spriteDirection = false;
-            }
-            else if (isMovingRight) {
+            } else if (isMovingRight) {
                 moveRight(game);
                 spriteDirection = true;
             }
-            if (spriteDirection) this.img = Sprite.movingSprite(enemyAnimation[0], enemyAnimation[1], enemyAnimation[2], animation, 35).getFxImage();
-            else this.img = Sprite.movingSprite(enemyAnimation[3], enemyAnimation[4], enemyAnimation[5], animation, 35).getFxImage();
-                steps--;
+            if (spriteDirection)
+                this.img = Sprite.movingSprite(enemyAnimation[0], enemyAnimation[1], enemyAnimation[2], animation, 35).getFxImage();
+            else
+                this.img = Sprite.movingSprite(enemyAnimation[3], enemyAnimation[4], enemyAnimation[5], animation, 35).getFxImage();
+            steps--;
         }
-
     }
 }
