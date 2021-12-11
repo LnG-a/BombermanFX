@@ -125,7 +125,7 @@ public class Bomber extends MovableEntity {
                 if (animation%20==0) SoundPlayer.moveUpDown();
             }
         }
-        
+
         this.checkDeadByFlame(game);
     }
 
