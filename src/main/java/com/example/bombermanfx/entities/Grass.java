@@ -10,6 +10,7 @@ public class Grass extends Entity {
         this.img=Sprite.grass.getFxImage();
     }
 
+
     @Override
     public void update(Bomberman game) {
 

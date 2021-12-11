@@ -31,6 +31,7 @@ public abstract class MovableEntity extends Entity {
         } else {
             x = (int) afterX;
         }
+        x = (double)Math.round(x*10000)/10000;
     }
 
     public void moveLeft(Bomberman game) {
@@ -43,6 +44,8 @@ public abstract class MovableEntity extends Entity {
         } else {
             x = (int) afterX + 1;
         }
+        x = (double)Math.round(x*10000)/10000;
+
     }
 
     public void moveUp(Bomberman game) {
@@ -55,6 +58,8 @@ public abstract class MovableEntity extends Entity {
         } else {
             y = (int) afterY + 1;
         }
+        y = (double)Math.round(y*10000)/10000;
+
     }
 
     public void moveDown(Bomberman game) {
@@ -67,6 +72,8 @@ public abstract class MovableEntity extends Entity {
         } else {
             y = (int) afterY;
         }
+        y = (double)Math.round(y*10000)/10000;
+
     }
 
     private boolean canMove(Bomberman game, double x, double y) {

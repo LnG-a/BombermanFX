@@ -9,6 +9,8 @@ public abstract class Enemy extends MovableEntity {
     protected int steps;
     protected final int MAX_STEP;
     protected Sprite[] enemyAnimation;
+    protected boolean spriteDirection = true;
+    protected int life = 2;
 
     public Enemy(double x, double y, double speed) {
         super(x, y);
@@ -19,22 +21,10 @@ public abstract class Enemy extends MovableEntity {
 
     @Override
     public void update(Bomberman game) {
+        //System.out.println("Moving : " + x + " " + y);
         if (animation<Integer.MAX_VALUE-1) animation++;
         else animation=0;
         calculateMove(game);
-        //moveLeft(game);
-        if (isMovingRight) {
-            this.img = Sprite.movingSprite(enemyAnimation[0], enemyAnimation[1], enemyAnimation[2], animation, 20).getFxImage();
-        }
-        if (isMovingLeft) {
-            this.img = Sprite.movingSprite(enemyAnimation[3], enemyAnimation[4], enemyAnimation[5], animation, 20).getFxImage();
-        }
-        if (isMovingUp) {
-            this.img = Sprite.movingSprite(enemyAnimation[0], enemyAnimation[1], enemyAnimation[2], animation, 20).getFxImage();
-        }
-        if (isMovingDown) {
-            this.img = Sprite.movingSprite(enemyAnimation[0], enemyAnimation[1], enemyAnimation[2], animation, 20).getFxImage();
-        }
         dead(game);
     }
 
@@ -51,7 +41,7 @@ public abstract class Enemy extends MovableEntity {
 
     public void calculateMove(Bomberman game) {
         if (steps == 0) {
-            int direction = ai.calculateDirection();
+            int direction = ai.calculateDirection(game, this.x, this.y);
             switch (direction) {
                 case 0 -> {
                     isMovingUp = true;
@@ -81,12 +71,19 @@ public abstract class Enemy extends MovableEntity {
             steps = MAX_STEP;
         }
         else {
-            int xa = 0, ya = 0;
             if (isMovingUp) moveUp(game);
             else if (isMovingDown) moveDown(game);
-            else if (isMovingLeft) moveLeft(game);
-            else if (isMovingRight) moveRight(game);
-            steps--;
+            else if (isMovingLeft) {
+                moveLeft(game);
+                spriteDirection = false;
+            }
+            else if (isMovingRight) {
+                moveRight(game);
+                spriteDirection = true;
+            }
+            if (spriteDirection) this.img = Sprite.movingSprite(enemyAnimation[0], enemyAnimation[1], enemyAnimation[2], animation, 20).getFxImage();
+            else this.img = Sprite.movingSprite(enemyAnimation[3], enemyAnimation[4], enemyAnimation[5], animation, 20).getFxImage();
+                steps--;
         }
 
     }

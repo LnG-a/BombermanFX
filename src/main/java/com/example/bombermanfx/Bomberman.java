@@ -167,7 +167,7 @@ public class Bomberman extends Application {
                        entities.add(new Brick(j,i));
                        break;
                    case 'p':
-                       entities.add(new Grass(j,i));
+                       stillEntities.add(new Grass(j,i));
                        player.setX(j);
                        player.setY(i);
                        break;
@@ -207,6 +207,20 @@ public class Bomberman extends Application {
             if (i.getX() == x && i.getY() == y && i.getClass().equals(Wall.class)) return i;
         }
         return null;
+    }
+
+    public Grass getGrass(int x, int y) {
+        for (Entity i : this.getStillEntities()) {
+            if(i.getX() == x && i.getY() == y && i.getClass().equals(Grass.class)) return (Grass)i;
+        }
+        return null;
+    }
+
+    public boolean hasBomb(int x, int y) {
+        for (Entity i : this.getEntities()) {
+            if(i.getX() == x && i.getY() == y && i.getClass().equals(Bomb.class)) return true;
+        }
+        return false;
     }
 
     public boolean validatePosition(int x, int y) {
