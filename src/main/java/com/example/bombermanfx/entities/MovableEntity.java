@@ -104,4 +104,20 @@ public abstract class MovableEntity extends Entity {
     public void setY(double y){
         this.y=y;
     }
+
+    protected int autoFix(double x){
+        int fixedX= (int) x;
+        double next = x % 1;
+        if (next >= 0.5) fixedX++;
+        return fixedX;
+    }
+
+    protected void checkDeadByFlame(Bomberman game){
+        for (Entity i : game.getEntities()) {
+            if (i.getX()==autoFix(x)&& i.getY()==autoFix(y) && i.getClass().equals(Flame.class)) {
+                dead();
+                break;
+            }
+        }
+    }
 }

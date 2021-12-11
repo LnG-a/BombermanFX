@@ -125,14 +125,8 @@ public class Bomber extends MovableEntity {
                 if (animation%20==0) SoundPlayer.moveUpDown();
             }
         }
-
-        //Check dead by Flame
-        for (Entity i : game.getEntities()) {
-            if (i.getX()==autoFix(x)&& i.getY()==autoFix(y) && i.getClass().equals(Flame.class)) {
-                dead();
-                break;
-            }
-        }
+        
+        this.checkDeadByFlame(game);
     }
 
     public void createBomb(Bomberman game) {
@@ -144,12 +138,7 @@ public class Bomber extends MovableEntity {
         }
     }
 
-    private int autoFix(double x){
-        int fixedX= (int) x;
-        double next = x % 1;
-        if (next >= 0.5) fixedX++;
-        return fixedX;
-    }
+
 
     public void setFlameLength(int flameLength) {
         this.flameLength = flameLength;
