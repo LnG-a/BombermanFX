@@ -1,4 +1,4 @@
-package com.example.bombermanfx.entities.AI;
+package com.example.bombermanfx.entities.enemies.AI;
 
 import com.example.bombermanfx.Bomberman;
 

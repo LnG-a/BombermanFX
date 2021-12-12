@@ -114,8 +114,32 @@ public class Sprite {
 
     public static Sprite kondoria_dead = new Sprite(DEFAULT_SIZE, 10, 8, SpriteSheet.tiles, 16, 16);
 
+<<<<<<< Updated upstream
     //Pass
 
+=======
+    //Red Pontan
+    public static Sprite red_pontan_left_1 = new Sprite(DEFAULT_SIZE, 12, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite red_pontan_left_2 = new Sprite(DEFAULT_SIZE, 12, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite red_pontan_left_3 = new Sprite(DEFAULT_SIZE, 12, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite red_pontan_right_1 = new Sprite(DEFAULT_SIZE, 13, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite red_pontan_right_2 = new Sprite(DEFAULT_SIZE, 13, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite red_pontan_right_3 = new Sprite(DEFAULT_SIZE, 13, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite red_pontan_dead = new Sprite(DEFAULT_SIZE, 12, 8, SpriteSheet.tiles, 16, 16);
+
+    //Yellow Pontan
+    public static Sprite yellow_pontan_left_1 = new Sprite(DEFAULT_SIZE, 14, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite yellow_pontan_left_2 = new Sprite(DEFAULT_SIZE, 14, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite yellow_pontan_left_3 = new Sprite(DEFAULT_SIZE, 14, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite yellow_pontan_right_1 = new Sprite(DEFAULT_SIZE, 15, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite yellow_pontan_right_2 = new Sprite(DEFAULT_SIZE, 15, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite yellow_pontan_right_3 = new Sprite(DEFAULT_SIZE, 15, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite yellow_pontan_dead = new Sprite(DEFAULT_SIZE, 14, 8, SpriteSheet.tiles, 16, 16);
+>>>>>>> Stashed changes
 
     //ALL
     public static Sprite mob_dead1 = new Sprite(DEFAULT_SIZE, 15, 0, SpriteSheet.tiles, 16, 16);

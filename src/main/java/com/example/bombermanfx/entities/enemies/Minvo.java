@@ -1,6 +1,6 @@
-package com.example.bombermanfx.entities;
+package com.example.bombermanfx.entities.enemies;
 
-import com.example.bombermanfx.entities.AI.AIMedium;
+import com.example.bombermanfx.entities.enemies.AI.AIMedium;
 import com.example.bombermanfx.graphics.Sprite;
 
 public class Minvo extends Enemy {

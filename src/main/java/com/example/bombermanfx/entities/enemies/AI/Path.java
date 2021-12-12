@@ -1,7 +1,7 @@
-package com.example.bombermanfx.entities.AI;
+package com.example.bombermanfx.entities.enemies.AI;
 
 import com.example.bombermanfx.Bomberman;
-import com.example.bombermanfx.entities.Grass;
+import com.example.bombermanfx.entities.map.Grass;
 
 import java.util.*;
 

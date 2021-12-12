@@ -1,6 +1,16 @@
 package com.example.bombermanfx;
 
 import com.example.bombermanfx.entities.*;
+import com.example.bombermanfx.entities.bomber.Bomb;
+import com.example.bombermanfx.entities.bomber.Bomber;
+import com.example.bombermanfx.entities.enemies.Balloom;
+import com.example.bombermanfx.entities.enemies.Oneal;
+import com.example.bombermanfx.entities.enemies.RedPontan;
+import com.example.bombermanfx.entities.enemies.YellowPontan;
+import com.example.bombermanfx.entities.map.Brick;
+import com.example.bombermanfx.entities.map.Grass;
+import com.example.bombermanfx.entities.map.Portal;
+import com.example.bombermanfx.entities.map.Wall;
 import com.example.bombermanfx.graphics.Sprite;
 import com.example.bombermanfx.sounds.SoundPlayer;
 import javafx.animation.AnimationTimer;
@@ -11,22 +21,16 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.Blend;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -201,6 +205,16 @@ public class Bomberman extends Application {
                    case '2':
                        stillEntities.add(new Grass(j,i));
                        entities.add(new Oneal(j,i));
+                       enemies++;
+                       break;
+                   case '3':
+                       stillEntities.add(new Grass(j,i));
+                       entities.add(new RedPontan(j,i));
+                       enemies++;
+                       break;
+                   case '4':
+                       stillEntities.add(new Grass(j,i));
+                       entities.add(new YellowPontan(j,i));
                        enemies++;
                        break;
                    case 'x':

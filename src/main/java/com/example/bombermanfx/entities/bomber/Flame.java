@@ -1,11 +1,12 @@
-package com.example.bombermanfx.entities;
+package com.example.bombermanfx.entities.bomber;
 
 import com.example.bombermanfx.Bomberman;
+import com.example.bombermanfx.entities.Entity;
 import com.example.bombermanfx.graphics.Sprite;
 import javafx.scene.image.Image;
 
 
-public class Flame extends Entity{
+public class Flame extends Entity {
     private final int type;
     public static final int CENTER=0;
     public static final int VERTICAL=1;

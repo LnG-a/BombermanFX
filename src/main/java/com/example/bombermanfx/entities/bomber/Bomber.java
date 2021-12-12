@@ -1,10 +1,10 @@
-package com.example.bombermanfx.entities;
+package com.example.bombermanfx.entities.bomber;
 
 import com.example.bombermanfx.Bomberman;
+import com.example.bombermanfx.entities.MovableEntity;
 import com.example.bombermanfx.graphics.Sprite;
 import com.example.bombermanfx.sounds.SoundPlayer;
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;

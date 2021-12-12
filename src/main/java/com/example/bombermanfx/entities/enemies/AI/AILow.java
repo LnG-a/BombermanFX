@@ -1,16 +1,10 @@
-package com.example.bombermanfx.entities.AI;
+package com.example.bombermanfx.entities.enemies.AI;
 
 import com.example.bombermanfx.Bomberman;
+import com.example.bombermanfx.entities.Entity;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class AIMedium extends AI{
-    private static final int _step = 10;
-
-    private int step = 0;
-
-    public AIMedium() {
+public class AILow extends AI {
+    public AILow() {
         _dodgeRange = 3;
     }
 
@@ -18,29 +12,22 @@ public class AIMedium extends AI{
     public int calculateDirection(Bomberman game, double x, double y) {
         x = Math.round(x);
         y = Math.round(y);
-        if (!direction.isEmpty() && step > 0 && !dodgeBomb) {
-            step--;
-        }
-        else {
+//        Entity a = game.getObstacle((int)x - 1, (int)y);
+//        Entity b = game.getObstacle((int)x + 1, (int)y);
+//        Entity c = game.getObstacle((int)x, (int)y - 1);
+//        Entity d = game.getObstacle((int)x, (int)y + 1);
+//        if (a != null && b != null && c != null && d != null) return random.nextInt(4);
+        if (direction.isEmpty() || dodgeBomb) {
             dodgeBomb = false;
-            step = _step;
-            int playerX = (int)game.getPlayer().getX();
-            int playerY = (int)game.getPlayer().getY();
-            int finalX = playerX;
-            int finalY = playerY;
+            int finalX = random.nextInt(Bomberman.WIDTH - 2) + 1;
+            int finalY = random.nextInt(Bomberman.HEIGHT - 2) + 1;
             Path path = new Path(game, (int)x, (int)y);
-            if (!path.hasPathTo(finalX, finalY)) {
-                dodgeBomb = false;
+            while (!path.hasPathTo(finalX, finalY) || finalX == (int)x && finalY == (int)y) {
                 finalX = random.nextInt(Bomberman.WIDTH - 2) + 1;
                 finalY = random.nextInt(Bomberman.HEIGHT - 2) + 1;
-                while (!path.hasPathTo(finalX, finalY) || finalX == (int) x && finalY == (int) y) {
-                    finalX = random.nextInt(Bomberman.WIDTH - 2) + 1;
-                    finalY = random.nextInt(Bomberman.HEIGHT - 2) + 1;
-                }
-                direction = path.pathTo(finalX, finalY);
             }
+            direction = path.pathTo(finalX, finalY);
         }
-
         int check = direction.pop();
         switch (check) {
             case 0 :

@@ -1,6 +1,7 @@
 package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
+import com.example.bombermanfx.entities.bomber.Flame;
 
 public abstract class MovableEntity extends Entity {
     public static final int LEFT = 0;

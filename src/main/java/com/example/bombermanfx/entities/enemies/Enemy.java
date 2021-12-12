@@ -1,7 +1,8 @@
-package com.example.bombermanfx.entities;
+package com.example.bombermanfx.entities.enemies;
 
 import com.example.bombermanfx.Bomberman;
-import com.example.bombermanfx.entities.AI.AI;
+import com.example.bombermanfx.entities.enemies.AI.AI;
+import com.example.bombermanfx.entities.MovableEntity;
 import com.example.bombermanfx.graphics.Sprite;
 
 public abstract class Enemy extends MovableEntity {
@@ -32,12 +33,18 @@ public abstract class Enemy extends MovableEntity {
                 destroyed=false;
             }
             if (this.life == 0) {
+
                 if (animation > animationDead) {
                     animation = -60;
                 }
                 if (animation >= animationDead) {
                     game.getEntities().remove(this);
                     game.enemies--;
+                    if (this.getClass().equals(RedPontan.class)) {
+                        game.getEntities().add(new YellowPontan(x,y));
+                        game.getEntities().add(new YellowPontan(x,y));
+                        game.enemies+=2;
+                    }
                     game.SCORE+=this.point;
                 } else if (animation >= 0) {
                     this.img = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animation, animationDead).getFxImage();

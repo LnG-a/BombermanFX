@@ -1,6 +1,7 @@
-package com.example.bombermanfx.entities;
+package com.example.bombermanfx.entities.enemies;
 
-import com.example.bombermanfx.entities.AI.AIHigh;
+import com.example.bombermanfx.entities.enemies.AI.AIHigh;
+import com.example.bombermanfx.entities.enemies.Enemy;
 import com.example.bombermanfx.graphics.Sprite;
 
 public class Doria extends Enemy {

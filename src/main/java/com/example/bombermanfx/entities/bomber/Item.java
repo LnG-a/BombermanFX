@@ -1,12 +1,13 @@
-package com.example.bombermanfx.entities;
+package com.example.bombermanfx.entities.bomber;
 
 import com.example.bombermanfx.Bomberman;
+import com.example.bombermanfx.entities.Entity;
 import com.example.bombermanfx.graphics.Sprite;
 import com.example.bombermanfx.sounds.SoundPlayer;
 import javafx.scene.image.Image;
 
 
-public  class Item extends Entity{
+public  class Item extends Entity {
     public static final int FLAME_ITEM =0;
     public static final int BOMB_ITEM =1;
     public static final int SPEED_ITEM =2;

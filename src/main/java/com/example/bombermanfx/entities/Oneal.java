@@ -1,6 +1,6 @@
 package com.example.bombermanfx.entities;
 
-import com.example.bombermanfx.entities.AI.AIHigh;
+import com.example.bombermanfx.entities.enemies.AI.AIHigh;
 import com.example.bombermanfx.graphics.Sprite;
 
 public class Oneal extends Enemy {

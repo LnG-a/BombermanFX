@@ -1,9 +1,11 @@
-package com.example.bombermanfx.entities;
+package com.example.bombermanfx.entities.map;
 
 import com.example.bombermanfx.Bomberman;
+import com.example.bombermanfx.entities.Entity;
+import com.example.bombermanfx.entities.bomber.Item;
 import com.example.bombermanfx.graphics.Sprite;
 
-public class Brick extends Entity{
+public class Brick extends Entity {
     public Brick(double x, double y) {
         super(x, y);
         setPassable(false);
