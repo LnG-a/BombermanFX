@@ -41,38 +41,33 @@ public abstract class Enemy extends MovableEntity {
         else animation = 0;
 
         if (destroyed) {
-            if (this.life == 1) {
-                this.life--;
-                destroyed=false;
+            if (animation > animationDead) {
+                animation = -60;
             }
-            if (this.life==2){
-                this.life--;
-            }
-            if (this.life == 0) {   
-                if (animation > animationDead) {
-                    animation = -60;
+            if (animation >= animationDead) {
+                game.getEntities().remove(this);
+                game.enemies--;
+                if (this.getClass().equals(RedPontan.class)) {
+                    game.getEntities().add(new YellowPontan(autoFix(x),autoFix(y)));
+                    game.getEntities().add(new YellowPontan(autoFix(x),autoFix(y)));
+                    game.enemies+=2;
+                } else if (this.getClass().equals(Doria.class)){
+                    Bomb a =new Bomb(autoFix(x),autoFix(y), game.LEVEL);
+                    a.explode(game);
+                } else if (this.getClass().equals(Ovape.class)){
+                    game.getEntities().add(new OvapeReborn(autoFix(x),autoFix(y)));
+                    game.enemies++;
                 }
-                if (animation >= animationDead) {
-                    game.getEntities().remove(this);
-                    game.enemies--;
-                    if (this.getClass().equals(RedPontan.class)) {
-                        game.getEntities().add(new YellowPontan(x,y));
-                        game.getEntities().add(new YellowPontan(x,y));
-                        game.enemies+=2;
-                    } else if (this.getClass().equals(Doria.class)){
-                        Bomb a =new Bomb(autoFix(x),autoFix(y),2);
-                        a.explode(game);
-                    } else if (this.getClass().equals(Ovape.class)){
-                        game.getEntities().add(new OvapeReborn(x,y));
-                        game.enemies++;
-                    }
-                    game.SCORE+=this.point;
-                } else if (animation >= 0) {
-                    this.img = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animation, animationDead).getFxImage();
-                } else this.img = deadSprite.getFxImage();
-            }
+                game.SCORE+=this.point;
+            } else if (animation >= 0) {
+                this.img = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animation, animationDead).getFxImage();
+            } else this.img = deadSprite.getFxImage();
         } else {
             calculateMove(game);
+            if (spriteDirection)
+                this.img = Sprite.movingSprite(enemyAnimation[0], enemyAnimation[1], enemyAnimation[2], animation, 35).getFxImage();
+            else
+                this.img = Sprite.movingSprite(enemyAnimation[3], enemyAnimation[4], enemyAnimation[5], animation, 35).getFxImage();
             //Check dead by flame
             if (this.checkCollide(game.getPlayer())) game.getPlayer().dead();
             checkDeadByFlame(game);
@@ -119,10 +114,7 @@ public abstract class Enemy extends MovableEntity {
                 moveRight(game);
                 spriteDirection = true;
             }
-            if (spriteDirection)
-                this.img = Sprite.movingSprite(enemyAnimation[0], enemyAnimation[1], enemyAnimation[2], animation, 35).getFxImage();
-            else
-                this.img = Sprite.movingSprite(enemyAnimation[3], enemyAnimation[4], enemyAnimation[5], animation, 35).getFxImage();
+
             steps--;
         }
     }

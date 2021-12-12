@@ -147,16 +147,18 @@ public class Sprite<upstream> {
 
     public static Sprite red_pontan_dead = new Sprite(DEFAULT_SIZE, 12, 8, SpriteSheet.tiles, 16, 16);
 
-    //Yellow Pontan ID 9
-    public static Sprite yellow_pontan_left_1 = new Sprite(DEFAULT_SIZE, 14, 5, SpriteSheet.tiles, 16, 16);
-    public static Sprite yellow_pontan_left_2 = new Sprite(DEFAULT_SIZE, 14, 6, SpriteSheet.tiles, 16, 16);
-    public static Sprite yellow_pontan_left_3 = new Sprite(DEFAULT_SIZE, 14, 7, SpriteSheet.tiles, 16, 16);
+    //Boss ID 9
+    public static Sprite boss_down_1 = new Sprite(DEFAULT_SIZE, 0, 12, SpriteSheet.tiles, 16, 16);
+    public static Sprite boss_down_2 = new Sprite(DEFAULT_SIZE, 1, 12, SpriteSheet.tiles, 16, 16);
 
-    public static Sprite yellow_pontan_right_1 = new Sprite(DEFAULT_SIZE, 15, 5, SpriteSheet.tiles, 16, 16);
-    public static Sprite yellow_pontan_right_2 = new Sprite(DEFAULT_SIZE, 15, 6, SpriteSheet.tiles, 16, 16);
-    public static Sprite yellow_pontan_right_3 = new Sprite(DEFAULT_SIZE, 15, 7, SpriteSheet.tiles, 16, 16);
+    public static Sprite boss_left_1 = new Sprite(DEFAULT_SIZE, 2, 12, SpriteSheet.tiles, 16, 16);
+    public static Sprite boss_left_2 = new Sprite(DEFAULT_SIZE, 3, 12, SpriteSheet.tiles, 16, 16);
 
-    public static Sprite yellow_pontan_dead = new Sprite(DEFAULT_SIZE, 14, 8, SpriteSheet.tiles, 16, 16);
+    public static Sprite boss_right_1 = new Sprite(DEFAULT_SIZE, 4, 12, SpriteSheet.tiles, 16, 16);
+    public static Sprite boss_right_2 = new Sprite(DEFAULT_SIZE, 5, 12, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite boss_up_1 = new Sprite(DEFAULT_SIZE, 6, 12, SpriteSheet.tiles, 16, 16);
+    public static Sprite boss_up_2 = new Sprite(DEFAULT_SIZE, 7, 12, SpriteSheet.tiles, 16, 16);
 
     //Ovape ID 10
     public static Sprite ovape_reborn_left_1 = new Sprite(DEFAULT_SIZE, 10, 9, SpriteSheet.tiles, 16, 16);
@@ -168,6 +170,17 @@ public class Sprite<upstream> {
     public static Sprite ovape_reborn_right_3 = new Sprite(DEFAULT_SIZE, 11, 11, SpriteSheet.tiles, 16, 16);
 
     public static Sprite ovape_reborn_dead = new Sprite(DEFAULT_SIZE, 10, 12, SpriteSheet.tiles, 16, 16);
+
+    //Yellow Pontan ID 11
+    public static Sprite yellow_pontan_left_1 = new Sprite(DEFAULT_SIZE, 14, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite yellow_pontan_left_2 = new Sprite(DEFAULT_SIZE, 14, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite yellow_pontan_left_3 = new Sprite(DEFAULT_SIZE, 14, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite yellow_pontan_right_1 = new Sprite(DEFAULT_SIZE, 15, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite yellow_pontan_right_2 = new Sprite(DEFAULT_SIZE, 15, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite yellow_pontan_right_3 = new Sprite(DEFAULT_SIZE, 15, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite yellow_pontan_dead = new Sprite(DEFAULT_SIZE, 14, 8, SpriteSheet.tiles, 16, 16);
 
     //ALL
     public static Sprite mob_dead1 = new Sprite(DEFAULT_SIZE, 15, 0, SpriteSheet.tiles, 16, 16);

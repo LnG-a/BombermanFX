@@ -234,6 +234,11 @@ public class Bomberman extends Application {
                        entities.add(new RedPontan(j,i));
                        enemies++;
                        break;
+                   case '9':
+                       stillEntities.add(new Grass(j,i));
+                       entities.add(new Boss(j,i));
+                       enemies++;
+                       break;
                    case 'x':
                        //stillEntities.add(new Grass(j,i));
                        entities.add(new Portal(j,i));
