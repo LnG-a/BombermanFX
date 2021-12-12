@@ -27,7 +27,10 @@ public abstract class Enemy extends MovableEntity {
         else animation = 0;
 
         if (destroyed) {
-            if (this.life == 1) this.life--;
+            if (this.life == 1) {
+                this.life--;
+                destroyed=false;
+            }
             if (this.life == 0) {
                 if (animation > animationDead) {
                     animation = -60;
