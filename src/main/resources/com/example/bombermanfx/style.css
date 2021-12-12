@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "Rexlia Rg";
+    font-style: normal;
+    font-weight: 300;
+    src: url('font/rexlia.otf');
+}
+
+.label {
+    -fx-font-family: "Rexlia Rg";
+    -fx-font-size: 50;
+    -fx-text-fill: #FFFFFF;
+}
+
+.outline.label .text {
+    -fx-stroke: #000000;
+    -fx-stroke-width: 1px;
+}

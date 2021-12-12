@@ -40,7 +40,6 @@ public class Path {
             list.add(3);
         }
         Collections.shuffle(list, new Random());
-        System.out.println(list);
         for (int i = 0; i < list.size(); i++) {
             switch(list.get(i)) {
                 case 0 :

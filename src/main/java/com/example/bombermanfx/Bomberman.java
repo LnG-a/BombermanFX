@@ -6,10 +6,12 @@ import com.example.bombermanfx.sounds.SoundPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
@@ -21,10 +23,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Bomberman extends Application {
     public static int WIDTH = 31;
@@ -42,14 +41,45 @@ public class Bomberman extends Application {
     private Stage mainStage;
 
     public static void main(String[] args) {
-        Application.launch(Bomberman.class);
+        launch();
     }
 
-    @Override
-    public void start(Stage stage) throws IOException {
+//    @Override
+//    public void start2(Stage stage) throws IOException {
+//        //Theme song
+//        SoundPlayer.themeSong();
+//        this.mainStage=stage;
+//        // Tao Canvas
+//        canvas = new Canvas(Sprite.SCALED_SIZE*WIDTH, Sprite.SCALED_SIZE*HEIGHT);
+//        canvas.setFocusTraversable(true);
+//        gc = canvas.getGraphicsContext2D();
+//
+//        // Tao root container
+//        Group root = new Group();
+//        root.getChildren().add(canvas);
+//
+//        // Tao scene
+//        Scene scene = new Scene(root);
+//
+//        // Them scene vao stage
+//        stage.setScene(scene);
+//        stage.show();
+//        AnimationTimer timer = new AnimationTimer() {
+//            @Override
+//            public void handle(long now) {
+//                render();
+//                update();
+//            }
+//        };
+//
+//        timer.start();
+//        createMap(LEVEL);
+//
+//    }
+
+    public void play() throws IOException {
         //Theme song
         SoundPlayer.themeSong();
-        this.mainStage=stage;
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE*WIDTH, Sprite.SCALED_SIZE*HEIGHT);
         canvas.setFocusTraversable(true);
@@ -63,8 +93,8 @@ public class Bomberman extends Application {
         Scene scene = new Scene(root);
 
         // Them scene vao stage
-        stage.setScene(scene);
-        stage.show();
+        mainStage.setScene(scene);
+        //stage.show();
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -75,6 +105,21 @@ public class Bomberman extends Application {
 
         timer.start();
         createMap(LEVEL);
+
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Bomberman.class.getResource("Menu.fxml"));
+        this.mainStage = stage;
+        mainStage.setTitle("Bomberman 2k21");
+        mainStage.setResizable(false);
+        mainStage.getIcons().add(new Image(Objects.requireNonNull(Bomberman.class.getResourceAsStream("icon.png"))));
+        mainStage.setScene(new Scene(fxmlLoader.load()));
+        mainStage.show();
+        Menu menuController = fxmlLoader.getController();
+        menuController.stage = mainStage;
+        menuController.game = this;
 
     }
 
