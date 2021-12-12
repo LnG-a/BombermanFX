@@ -40,8 +40,9 @@ public class AIMedium extends AI{
                 direction = path.pathTo(finalX, finalY);
             }
         }
-
-        int check = direction.pop();
+        int check;
+        if (direction.isEmpty()) check = random.nextInt(4);
+        else check = direction.pop();
         switch (check) {
             case 0 :
                 for (int i = 1; i < _dodgeRange; i++) {
