@@ -6,6 +6,8 @@ import com.example.bombermanfx.entities.MovableEntity;
 import com.example.bombermanfx.graphics.Sprite;
 
 public abstract class Enemy extends MovableEntity {
+
+
     protected AI ai;
     protected int steps;
     protected final int MAX_STEP;
@@ -13,7 +15,7 @@ public abstract class Enemy extends MovableEntity {
     protected Sprite deadSprite;
     protected boolean spriteDirection = true;
     protected int life = 1;
-    protected int point = 100;
+    protected int point;
 
     public Enemy(double x, double y, double speed) {
         super(x, y);

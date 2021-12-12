@@ -4,6 +4,7 @@ import com.example.bombermanfx.entities.enemies.AI.AIHigh;
 import com.example.bombermanfx.entities.enemies.Enemy;
 import com.example.bombermanfx.graphics.Sprite;
 
+//ID 7
 public class Doria extends Enemy {
     public Doria(double x, double y) {
         super(x, y, 0.01);

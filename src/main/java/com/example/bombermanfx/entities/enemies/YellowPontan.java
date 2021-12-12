@@ -2,10 +2,9 @@ package com.example.bombermanfx.entities.enemies;
 
 import com.example.bombermanfx.entities.enemies.AI.AI;
 import com.example.bombermanfx.entities.enemies.AI.AILow;
-import com.example.bombermanfx.entities.enemies.AI.AIMedium;
 import com.example.bombermanfx.graphics.Sprite;
 
-//ID: 4
+//ID: 9
 public class YellowPontan extends Enemy{
     private static final double SPEED=0.035;
     private static final int POINT=150;

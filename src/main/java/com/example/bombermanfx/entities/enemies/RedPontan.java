@@ -4,7 +4,7 @@ import com.example.bombermanfx.entities.enemies.AI.AI;
 import com.example.bombermanfx.entities.enemies.AI.AIMedium;
 import com.example.bombermanfx.graphics.Sprite;
 
-//ID: 3
+//ID: 8
 public class RedPontan extends Enemy{
     private static final double SPEED=0.025;
     private static final int POINT=200;

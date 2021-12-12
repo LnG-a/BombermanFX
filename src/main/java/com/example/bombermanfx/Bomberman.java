@@ -3,10 +3,7 @@ package com.example.bombermanfx;
 import com.example.bombermanfx.entities.*;
 import com.example.bombermanfx.entities.bomber.Bomb;
 import com.example.bombermanfx.entities.bomber.Bomber;
-import com.example.bombermanfx.entities.enemies.Balloom;
-import com.example.bombermanfx.entities.enemies.Oneal;
-import com.example.bombermanfx.entities.enemies.RedPontan;
-import com.example.bombermanfx.entities.enemies.YellowPontan;
+import com.example.bombermanfx.entities.enemies.*;
 import com.example.bombermanfx.entities.map.Brick;
 import com.example.bombermanfx.entities.map.Grass;
 import com.example.bombermanfx.entities.map.Portal;
@@ -209,12 +206,17 @@ public class Bomberman extends Application {
                        break;
                    case '3':
                        stillEntities.add(new Grass(j,i));
-                       entities.add(new RedPontan(j,i));
+                       entities.add(new Dall(j,i));
                        enemies++;
                        break;
-                   case '4':
+                   case '6':
                        stillEntities.add(new Grass(j,i));
-                       entities.add(new YellowPontan(j,i));
+                       entities.add(new Minvo(j,i));
+                       enemies++;
+                       break;
+                   case '7':
+                       stillEntities.add(new Grass(j,i));
+                       entities.add(new Doria(j,i));
                        enemies++;
                        break;
                    case 'x':
