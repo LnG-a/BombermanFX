@@ -50,7 +50,7 @@ public class Bomb extends Entity {
     }
 
 
-    private void explode(Bomberman game) {
+    public void explode(Bomberman game) {
         //Play sound
         SoundPlayer.explosion();
 

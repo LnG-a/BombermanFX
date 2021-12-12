@@ -4,10 +4,10 @@ import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.entities.bomber.Flame;
 
 public abstract class MovableEntity extends Entity {
-    public static final int LEFT = 0;
+    /*public static final int LEFT = 0;
     public static final int RIGHT = 1;
     public static final int UP = 2;
-    public static final int DOWN = 3;
+    public static final int DOWN = 3;*/
 
     protected double speed;
     protected boolean isMovingRight=false;
@@ -16,6 +16,7 @@ public abstract class MovableEntity extends Entity {
     protected boolean isMovingDown=false;
     protected double fixingNumber=0;
     protected int animationDead=45;
+    protected boolean canPass=false;
 
     public MovableEntity(double x, double y) {
         super(x, y);
@@ -78,6 +79,7 @@ public abstract class MovableEntity extends Entity {
     }
 
     private boolean canMove(Bomberman game, double x, double y) {
+        if (canPass) return true;
         int checkX = (int) x;
         int checkY = (int) y;
         if (x == checkX && y == checkY) {
