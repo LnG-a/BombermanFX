@@ -11,8 +11,6 @@ public abstract class AI {
     protected int _dodgeRange;
     protected boolean dodgeBomb = false;
 
-
-
     /**
      * Thuật toán tìm đường đi
      * @return hướng đi xuống/phải/trái/lên tương ứng với các giá trị 0/1/2/3
