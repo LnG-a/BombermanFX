@@ -60,6 +60,7 @@ public class AIHigh extends AI{
                                 }
                                 if (findPath) break;
                             }
+                            break;
                         case 3 :
                             for (finalX = playerX; finalX > 0; finalX--) {
                                 for (finalY = playerY; finalY < Bomberman.HEIGHT - 1; finalY++) {
@@ -70,6 +71,7 @@ public class AIHigh extends AI{
                                 }
                                 if (findPath) break;
                             }
+                            break;
                         case 4 :
                             for (finalX = playerX; finalX < Bomberman.WIDTH - 1; finalX++) {
                                 for (finalY = playerY; finalY < Bomberman.HEIGHT - 1; finalY++) {
@@ -80,6 +82,7 @@ public class AIHigh extends AI{
                                 }
                                 if (findPath) break;
                             }
+                            break;
                     }
                     if (findPath) break;
                 }

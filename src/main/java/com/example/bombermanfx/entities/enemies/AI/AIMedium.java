@@ -33,13 +33,14 @@ public class AIMedium extends AI{
                 dodgeBomb = false;
                 finalX = random.nextInt(Bomberman.WIDTH - 2) + 1;
                 finalY = random.nextInt(Bomberman.HEIGHT - 2) + 1;
-                while (!path.hasPathTo(finalX, finalY) || finalX == (int) x && finalY == (int) y) {
+                while (!path.hasPathTo(finalX, finalY) || finalX == (int)x && finalY == (int)y) {
                     finalX = random.nextInt(Bomberman.WIDTH - 2) + 1;
                     finalY = random.nextInt(Bomberman.HEIGHT - 2) + 1;
                 }
-                direction = path.pathTo(finalX, finalY);
             }
+            direction = path.pathTo(finalX, finalY);
         }
+
         int check;
         if (direction.isEmpty()) check = random.nextInt(4);
         else check = direction.pop();
