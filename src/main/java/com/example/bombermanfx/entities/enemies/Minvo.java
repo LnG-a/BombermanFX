@@ -6,7 +6,7 @@ import com.example.bombermanfx.graphics.Sprite;
 
 //ID: 6
 public class Minvo extends Enemy {
-    private static final double SPEED=1/30;
+    private static final double SPEED=0.05;
     private static final int POINT=800;
     private static final Sprite[] ANIMATION= new Sprite[]{Sprite.minvo_right1,Sprite.minvo_right2,Sprite.minvo_right3,Sprite.minvo_left1,Sprite.minvo_left2,Sprite.minvo_left3};
     private static final Sprite DEAD_SPRITE = Sprite.minvo_dead;
