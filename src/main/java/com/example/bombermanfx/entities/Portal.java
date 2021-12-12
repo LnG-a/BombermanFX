@@ -3,7 +3,6 @@ package com.example.bombermanfx.entities;
 import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.graphics.Sprite;
 import com.example.bombermanfx.sounds.SoundPlayer;
-import javafx.scene.media.MediaPlayer;
 
 public class Portal extends Entity{
     public Portal(double x, double y) {
@@ -19,11 +18,5 @@ public class Portal extends Entity{
             game.getEntities().remove(this);
         }
     }
-
-    @Override
-    public void dead(Bomberman game) {
-
-    }
-
 
 }

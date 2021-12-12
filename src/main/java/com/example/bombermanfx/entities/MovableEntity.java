@@ -1,7 +1,6 @@
 package com.example.bombermanfx.entities;
 
 import com.example.bombermanfx.Bomberman;
-import javafx.scene.image.Image;
 
 public abstract class MovableEntity extends Entity {
     public static final int LEFT = 0;
@@ -14,8 +13,8 @@ public abstract class MovableEntity extends Entity {
     protected boolean isMovingLeft=false;
     protected boolean isMovingUp=false;
     protected boolean isMovingDown=false;
-
     protected double fixingNumber=0;
+    protected int animationDead=45;
 
     public MovableEntity(double x, double y) {
         super(x, y);
@@ -104,5 +103,16 @@ public abstract class MovableEntity extends Entity {
     }
     public void setY(double y){
         this.y=y;
+    }
+
+
+
+    protected void checkDeadByFlame(Bomberman game){
+        for (Entity i : game.getEntities()) {
+            if (this.checkCollide(i) && i.getClass().equals(Flame.class)) {
+                dead();
+                break;
+            }
+        }
     }
 }

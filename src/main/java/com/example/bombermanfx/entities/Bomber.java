@@ -34,8 +34,8 @@ public class Bomber extends MovableEntity {
         else animation=0;
 
         if (this.destroyed) {
-            if (animation> 28) animation=0;
-            if (animation > 27) {
+            if (animation> animationDead) animation=0;
+            if (animation >= animationDead) {
                 reset();
                 this.life--;
                 try {
@@ -44,7 +44,7 @@ public class Bomber extends MovableEntity {
                     e.printStackTrace();
                 }
                 destroyed = false;
-            } else this.img=Sprite.movingSprite(Sprite.player_dead,Sprite.player_dead_1,Sprite.player_dead_2,animation,27).getFxImage();
+            } else this.img=Sprite.movingSprite(Sprite.player_dead,Sprite.player_dead_1,Sprite.player_dead_2,animation,animationDead).getFxImage();
         } else {
             //Keyboard input
             game.getCanvas().setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -125,21 +125,12 @@ public class Bomber extends MovableEntity {
                 if (animation%20==0) SoundPlayer.moveUpDown();
             }
         }
-        //Check dead by Flame
-        for (Entity i : game.getEntities()) {
-            if (i.getX()==autoFix(x)&& i.getY()==autoFix(y) && i.getClass().equals(Flame.class)) {
-                dead(game);
-                break;
-            }
-        }
-    }
 
-    @Override
-    public void dead(Bomberman game) {
-        this.destroyed = true;
+        this.checkDeadByFlame(game);
     }
 
     public void createBomb(Bomberman game) {
+        SoundPlayer.createBomb();
         int xBomb = autoFix(x);
         int yBomb = autoFix(y);
         if (game.getObstacle(xBomb,yBomb) == null) {
@@ -147,12 +138,7 @@ public class Bomber extends MovableEntity {
         }
     }
 
-    private int autoFix(double x){
-        int fixedX= (int) x;
-        double next = x % 1;
-        if (next >= 0.5) fixedX++;
-        return fixedX;
-    }
+
 
     public void setFlameLength(int flameLength) {
         this.flameLength = flameLength;

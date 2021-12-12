@@ -39,8 +39,4 @@ public class Flame extends Entity{
         else if (System.currentTimeMillis()>time+100) this.img=flameAnimation[type][1];
         else this.img=flameAnimation[type][0];
     }
-
-    @Override
-    public void dead(Bomberman game) {
-    }
 }

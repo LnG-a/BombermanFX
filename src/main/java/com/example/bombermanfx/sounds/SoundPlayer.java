@@ -11,7 +11,8 @@ public class SoundPlayer {
     private static final Media MOVE_UP_DOWN = new Media(SoundPlayer.class.getResource("/audio/moveUpDown.wav").toExternalForm());
     private static final Media POWER_UP = new Media(SoundPlayer.class.getResource("/audio/powerUp.wav").toExternalForm());
     private static final Media THEME = new Media(SoundPlayer.class.getResource("/audio/themeSong.mp3").toExternalForm());
-    //private static final Media DEAD = new Media(SoundPlayer.class.getResource("/audio/dead.mp3").toExternalForm());
+    private static final Media CREATE_BOMB = new Media(SoundPlayer.class.getResource("/audio/createBomb.wav").toExternalForm());
+    private static final Media GAMEOVER = new Media(SoundPlayer.class.getResource("/audio/gameOver.wav").toExternalForm());
 
     private static MediaPlayer mediaPlayer;
     public static void explosion(){
@@ -45,8 +46,13 @@ public class SoundPlayer {
         mediaPlayer.play();
     }
 
-    /*public static void dead(){
-        mediaPlayer = new MediaPlayer(DEAD);
+    public static void createBomb(){
+        mediaPlayer = new MediaPlayer(CREATE_BOMB);
         mediaPlayer.play();
-    }*/
+    }
+
+    public static void gameOver(){
+        mediaPlayer=new MediaPlayer(GAMEOVER);
+        mediaPlayer.play();
+    }
 }
