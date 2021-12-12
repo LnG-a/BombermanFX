@@ -4,6 +4,7 @@ import com.example.bombermanfx.entities.enemies.AI.AI;
 import com.example.bombermanfx.entities.enemies.AI.AIHigh;
 import com.example.bombermanfx.graphics.Sprite;
 
+//Second Mode after an Ovape died
 public class OvapeReborn extends Enemy{
     private static final double SPEED = FAST;
     private static final int POINT = 700;

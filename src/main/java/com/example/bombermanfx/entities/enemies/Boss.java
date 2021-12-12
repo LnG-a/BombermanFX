@@ -6,6 +6,8 @@ import com.example.bombermanfx.entities.enemies.AI.AI;
 import com.example.bombermanfx.entities.enemies.AI.AIHigh;
 import com.example.bombermanfx.graphics.Sprite;
 
+//ID 10
+//Only die if it's the last one
 public class Boss extends Enemy{
     private static final double SPEED = FAST;
     private static final int POINT = 1500;

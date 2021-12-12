@@ -5,6 +5,7 @@ import com.example.bombermanfx.entities.enemies.AI.AIHigh;
 import com.example.bombermanfx.graphics.Sprite;
 
 //ID 5
+//Create Flame like a Bomb when it dies
 public class Doria extends Enemy {
     private static final double SPEED = SLOWEST;
     private static final int POINT = 400;

@@ -5,6 +5,7 @@ import com.example.bombermanfx.entities.enemies.AI.AIMedium;
 import com.example.bombermanfx.graphics.Sprite;
 
 //ID: 4
+//No special ability, fast
 public class Minvo extends Enemy {
     private static final double SPEED=FAST;
     private static final int POINT=400;

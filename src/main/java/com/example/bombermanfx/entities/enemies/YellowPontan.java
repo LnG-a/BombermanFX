@@ -5,6 +5,7 @@ import com.example.bombermanfx.entities.enemies.AI.AILow;
 import com.example.bombermanfx.graphics.Sprite;
 
 //ID: 11
+//Generated when a Red Pontan died
 public class YellowPontan extends Enemy{
     private static final double SPEED=FAST;
     private static final int POINT=200;

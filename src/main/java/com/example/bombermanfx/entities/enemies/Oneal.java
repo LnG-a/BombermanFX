@@ -5,6 +5,7 @@ import com.example.bombermanfx.entities.enemies.AI.AIMedium;
 import com.example.bombermanfx.graphics.Sprite;
 
 //ID: 2
+//No special ability
 public class Oneal extends Enemy {
     private static final double SPEED = NORMAL;
     private static final int POINT = 200;

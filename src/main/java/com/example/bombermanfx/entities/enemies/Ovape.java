@@ -5,6 +5,7 @@ import com.example.bombermanfx.entities.enemies.AI.AILow;
 import com.example.bombermanfx.graphics.Sprite;
 
 //ID 6
+//Have 2 lives, its second mode is more dangerous.
 public class Ovape extends Enemy{
     private static final double SPEED = SLOW;
     private static final double SPEED_REBORN = FAST;

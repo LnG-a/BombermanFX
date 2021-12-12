@@ -5,6 +5,7 @@ import com.example.bombermanfx.entities.enemies.AI.AILow;
 import com.example.bombermanfx.graphics.Sprite;
 
 //ID: 1
+//No special
 public class Balloom extends Enemy {
     private static final double SPEED = SLOW;
     private static final int POINT = 100;

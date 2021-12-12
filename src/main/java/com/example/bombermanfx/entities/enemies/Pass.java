@@ -5,6 +5,7 @@ import com.example.bombermanfx.entities.enemies.AI.AIHigh;
 import com.example.bombermanfx.graphics.Sprite;
 
 //ID 7
+//No special ability, fast and smart
 public class Pass extends Enemy{
     private static final double SPEED = FAST;
     private static final int POINT = 500;

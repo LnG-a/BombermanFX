@@ -2,10 +2,10 @@ package com.example.bombermanfx.entities.enemies;
 
 import com.example.bombermanfx.entities.enemies.AI.AI;
 import com.example.bombermanfx.entities.enemies.AI.AILow;
-import com.example.bombermanfx.entities.enemies.AI.AIMedium;
-import com.example.bombermanfx.entities.enemies.Enemy;
 import com.example.bombermanfx.graphics.Sprite;
 
+//ID 3
+//No special ability
 public class Dall extends Enemy {
     private static final double SPEED=NORMAL;
     private static final int POINT=150;
