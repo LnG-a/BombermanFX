@@ -15,6 +15,7 @@ public class SoundPlayer {
     private static final Media GAMEOVER = new Media(SoundPlayer.class.getResource("/audio/gameOver.wav").toExternalForm());
 
     private static MediaPlayer mediaPlayer;
+    private static MediaPlayer themeSongPlayer=new MediaPlayer(THEME);
     public static void explosion(){
         mediaPlayer = new MediaPlayer(EXPLOSION);
         mediaPlayer.play();
@@ -40,10 +41,14 @@ public class SoundPlayer {
         mediaPlayer.play();
     }
 
-    public static void themeSong(){
-        mediaPlayer = new MediaPlayer(THEME);
-        mediaPlayer.setCycleCount(-1);
-        mediaPlayer.play();
+    public static void startThemeSong(){
+        themeSongPlayer.setCycleCount(-1);
+        themeSongPlayer.play();
+
+    }
+
+    public static void stopThemeSong(){
+        themeSongPlayer.stop();
     }
 
     public static void createBomb(){

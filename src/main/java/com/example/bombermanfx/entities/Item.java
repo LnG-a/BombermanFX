@@ -27,20 +27,22 @@ public  class Item extends Entity{
             //Sound effects
             SoundPlayer.powerUp();
             powerUp(game.getPlayer());
+            game.SCORE+=50;
             game.getEntities().remove(this);
+
         }
     }
 
     private void powerUp(Bomber player) {
         switch (type){
             case  FLAME_ITEM:
-                if (player.getFlameLength() < Bomber.MAXFLAMELENGTH) player.setFlameLength(player.getFlameLength() + 1);
+                if (player.getFlameLength() < Bomber.MAX_FLAME_LENGTH) player.setFlameLength(player.getFlameLength() + 1);
                 break;
             case SPEED_ITEM:
-                if (player.getSpeed() < Bomber.MAXSPEED ) player.setSpeed(player.getSpeed() + 0.01);
+                if (player.getSpeed() < Bomber.MAX_SPEED ) player.setSpeed(player.getSpeed() + 0.01);
                 break;
             case BOMB_ITEM:
-                if (player.getNumberOfBombs() < Bomber.MAXBOMBS ) player.setNumberOfBombs(player.getNumberOfBombs() + 1);
+                if (player.getNumberOfBombs() < Bomber.MAX_BOMBS ) player.setNumberOfBombs(player.getNumberOfBombs() + 1);
                 break;
         }
     }

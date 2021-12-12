@@ -11,6 +11,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -33,8 +35,8 @@ import java.util.Scanner;
 public class Bomberman extends Application {
     public static int WIDTH = 31;
     public static int HEIGHT = 13;
-    private static Font fontRetro = Font.loadFont(Bomberman.class.getResource("/font/Fipps-Regular.otf").toExternalForm(),30);;
-
+    private static Font mainFont = Font.loadFont(Bomberman.class.getResource("/font/Fipps-Regular.otf").toExternalForm(),30);
+    private static Font fontGameOver = Font.loadFont(Bomberman.class.getResource("/font/Fipps-Regular.otf").toExternalForm(),70);
 
     public int LEVEL=1;
     public boolean levelUp;
@@ -54,7 +56,7 @@ public class Bomberman extends Application {
 
     public void play() throws IOException {
         //Theme song
-        SoundPlayer.themeSong();
+        SoundPlayer.startThemeSong();
 
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE*WIDTH, Sprite.SCALED_SIZE*HEIGHT);
@@ -71,9 +73,6 @@ public class Bomberman extends Application {
         // Them scene vao stage
         mainStage.setScene(scene);
         //stage.show();
-
-        // Set font
-        gc.setFont(fontRetro);
 
         //Main loop
         AnimationTimer timer = new AnimationTimer() {
@@ -112,7 +111,7 @@ public class Bomberman extends Application {
         for (Entity i : entities) {
             i.render(gc);
         }
-        player.render(gc);
+        if (player.getLife()>0)player.render(gc);
     }
 
     private void update() {
@@ -126,7 +125,27 @@ public class Bomberman extends Application {
                 e.printStackTrace();
             }
         } else {
-            player.update(this);
+            if (player.getLife()>0) player.update(this);
+            else {
+                gameOver();
+                canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent keyEvent) {
+                        resetGame();
+                    }
+                    private void resetGame() {
+                        SoundPlayer.startThemeSong();
+                        player.setLife(Bomber.DEFAULT_LIFE);
+                        LEVEL=1;
+                        SCORE=0;
+                        try {
+                            createMap(LEVEL);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
             for (int i = 0; i < entities.size(); i++) {
                 entities.get(i).update(this);
             }
@@ -146,9 +165,6 @@ public class Bomberman extends Application {
         //set size canvas
         canvas.setHeight(Sprite.SCALED_SIZE* HEIGHT+100);
         canvas.setWidth(Sprite.SCALED_SIZE*WIDTH);
-
-
-
 
         // Tao root container
         Group root = new Group();
@@ -200,7 +216,6 @@ public class Bomberman extends Application {
                }
            }
         }
-        //System.out.println(enemies);
     }
 
     private void reset() {
@@ -259,14 +274,25 @@ public class Bomberman extends Application {
     }
 
     private void updateStat(){
+        gc.setFont(mainFont);
         gc.setFill(Color.rgb(185,185,185));
         gc.fillRect(0, canvas.getHeight()-100, canvas.getWidth(), 100);
         gc.setFill(Color.rgb(0,0,0));
         gc.setTextAlign(TextAlignment.LEFT);
         gc.fillText("Level "+LEVEL,50,canvas.getHeight()-30);
         gc.setTextAlign(TextAlignment.RIGHT);
-        gc.fillText("Left " +(player.getLife()-1),canvas.getWidth() - 50,canvas.getHeight()-30);
+        gc.fillText("Life " +(player.getLife()),canvas.getWidth() - 50,canvas.getHeight()-30);
         gc.setTextAlign(TextAlignment.CENTER);
         gc.fillText(SCORE+"",canvas.getWidth()/2,canvas.getHeight()-30);
+    }
+
+    private void gameOver() {
+        gc.setGlobalAlpha(0.2);
+        gc.setEffect(new BoxBlur(canvas.getWidth()/2, canvas.getHeight()/2, 0));
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.setGlobalAlpha(1);
+        gc.setFont(fontGameOver);
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.fillText("GAMEOVER",canvas.getWidth()/2,canvas.getHeight()/2);
     }
 }

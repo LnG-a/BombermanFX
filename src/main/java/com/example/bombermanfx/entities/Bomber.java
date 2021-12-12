@@ -10,9 +10,14 @@ import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 
 public class Bomber extends MovableEntity {
-    public static final double MAXSPEED = 0.08;
-    public static final int MAXFLAMELENGTH = 8;
-    public static final int MAXBOMBS = 8;
+    public static final double MAX_SPEED = 0.08;
+    public static final int MAX_FLAME_LENGTH = 8;
+    public static final int MAX_BOMBS = 8;
+
+    public static final double DEFAULT_SPEED = 0.04;
+    public static final int DEFAULT_FLAME_LENGTH = 1;
+    public static final int DEFAULT_BOMB = 1;
+    public static final int DEFAULT_LIFE = 3;
 
     private int life;
     private int flameLength;
@@ -20,31 +25,37 @@ public class Bomber extends MovableEntity {
 
     public Bomber(int x, int y) {
         super(x, y);
-        this.speed = 0.04;
-        this.flameLength = 1;
-        this.numberOfBombs = 1;
-        this.life = 3;
+        this.speed = DEFAULT_SPEED;
+        this.flameLength = DEFAULT_FLAME_LENGTH;
+        this.numberOfBombs = DEFAULT_BOMB;
+        this.life = DEFAULT_LIFE;
         this.fixingNumber = 0.2;
         this.img = Sprite.player_down.getFxImage();
     }
 
     @Override
     public void update(Bomberman game) {
-        if (animation<Integer.MAX_VALUE-1) animation++;
-        else animation=0;
+        if (animation < Integer.MAX_VALUE - 1) animation++;
+        else animation = 0;
 
         if (this.destroyed) {
-            if (animation> animationDead) animation=0;
+            if (animation > animationDead) animation = 0;
             if (animation >= animationDead) {
-                reset();
                 this.life--;
-                try {
-                    game.createMap(game.LEVEL);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                reset();
                 destroyed = false;
-            } else this.img=Sprite.movingSprite(Sprite.player_dead,Sprite.player_dead_1,Sprite.player_dead_2,animation,animationDead).getFxImage();
+                if (life > 0) {
+                    try {
+                        game.createMap(game.LEVEL);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    SoundPlayer.stopThemeSong();
+                    SoundPlayer.gameOver();
+                }
+            } else
+                this.img = Sprite.movingSprite(Sprite.player_dead, Sprite.player_dead_1, Sprite.player_dead_2, animation, animationDead).getFxImage();
         } else {
             //Keyboard input
             game.getCanvas().setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -107,25 +118,24 @@ public class Bomber extends MovableEntity {
             if (isMovingRight) {
                 moveRight(game);
                 this.img = Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, animation, 20).getFxImage();
-                if (animation%20==0) SoundPlayer.moveRightLeft();
+                if (animation % 20 == 0) SoundPlayer.moveRightLeft();
             }
             if (isMovingLeft) {
                 moveLeft(game);
                 this.img = Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, animation, 20).getFxImage();
-                if (animation%20==0) SoundPlayer.moveRightLeft();
+                if (animation % 20 == 0) SoundPlayer.moveRightLeft();
             }
             if (isMovingDown) {
                 moveDown(game);
                 this.img = Sprite.movingSprite(Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2, animation, 20).getFxImage();
-                if (animation%20==0) SoundPlayer.moveUpDown();
+                if (animation % 20 == 0) SoundPlayer.moveUpDown();
             }
             if (isMovingUp) {
                 moveUp(game);
                 this.img = Sprite.movingSprite(Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, animation, 20).getFxImage();
-                if (animation%20==0) SoundPlayer.moveUpDown();
+                if (animation % 20 == 0) SoundPlayer.moveUpDown();
             }
         }
-
         this.checkDeadByFlame(game);
     }
 
@@ -133,11 +143,10 @@ public class Bomber extends MovableEntity {
         SoundPlayer.createBomb();
         int xBomb = autoFix(x);
         int yBomb = autoFix(y);
-        if (game.getObstacle(xBomb,yBomb) == null) {
+        if (game.getObstacle(xBomb, yBomb) == null) {
             game.getEntities().add(new Bomb(xBomb, yBomb, this.flameLength));
         }
     }
-
 
 
     public void setFlameLength(int flameLength) {
@@ -165,10 +174,10 @@ public class Bomber extends MovableEntity {
     }
 
     private boolean canCreateBomb() {
-        return numberOfBombs > Bomb.currentBomb;
+        return numberOfBombs > Bomb.currentBomb && life > 0;
     }
 
-    public void reset() {
+    private void reset() {
         this.speed = 0.04;
         this.flameLength = 1;
         this.numberOfBombs = 1;

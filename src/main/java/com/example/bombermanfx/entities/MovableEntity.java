@@ -105,8 +105,6 @@ public abstract class MovableEntity extends Entity {
         this.y=y;
     }
 
-
-
     protected void checkDeadByFlame(Bomberman game){
         for (Entity i : game.getEntities()) {
             if (this.checkCollide(i) && i.getClass().equals(Flame.class)) {
