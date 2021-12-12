@@ -7,8 +7,8 @@ import com.example.bombermanfx.graphics.Sprite;
 
 //ID: 8
 public class RedPontan extends Enemy{
-    private static final double SPEED=0.025;
-    private static final int POINT=200;
+    private static final double SPEED=FAST;
+    private static final int POINT=1000;
     private static final Sprite[] ANIMATION= new Sprite[]{Sprite.red_pontan_right_1,Sprite.red_pontan_right_2,Sprite.red_pontan_right_3,Sprite.red_pontan_left_1,Sprite.red_pontan_left_2,Sprite.red_pontan_left_3};
     private static final Sprite DEAD_SPRITE = Sprite.red_pontan_dead;
     private static final AI AI_LEVEL= new AIHigh();

@@ -209,14 +209,24 @@ public class Bomberman extends Application {
                        entities.add(new Dall(j,i));
                        enemies++;
                        break;
-                   case '6':
+                   case '4':
                        stillEntities.add(new Grass(j,i));
                        entities.add(new Minvo(j,i));
                        enemies++;
                        break;
-                   case '7':
+                   case '5':
                        stillEntities.add(new Grass(j,i));
                        entities.add(new Doria(j,i));
+                       enemies++;
+                       break;
+                   case '6':
+                       stillEntities.add(new Grass(j,i));
+                       entities.add(new Ovape(j,i));
+                       enemies++;
+                       break;
+                   case '7':
+                       stillEntities.add(new Grass(j,i));
+                       entities.add(new Pass(j,i));
                        enemies++;
                        break;
                    case '8':

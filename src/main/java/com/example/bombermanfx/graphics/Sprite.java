@@ -92,10 +92,7 @@ public class Sprite<upstream> {
 
     public static Sprite dall_dead = new Sprite(DEFAULT_SIZE, 13, 3, SpriteSheet.tiles, 16, 16);
 
-    //Pass ID 4
-    //Ovape ID 5
-
-    //Minvo ID 6
+    //Minvo ID 4
     public static Sprite minvo_left1 = new Sprite(DEFAULT_SIZE, 8, 5, SpriteSheet.tiles, 16, 16);
     public static Sprite minvo_left2 = new Sprite(DEFAULT_SIZE, 8, 6, SpriteSheet.tiles, 16, 16);
     public static Sprite minvo_left3 = new Sprite(DEFAULT_SIZE, 8, 7, SpriteSheet.tiles, 16, 16);
@@ -106,7 +103,7 @@ public class Sprite<upstream> {
 
     public static Sprite minvo_dead = new Sprite(DEFAULT_SIZE, 8, 8, SpriteSheet.tiles, 16, 16);
 
-    //Kondoria ID 7
+    //Kondoria ID 5
     public static Sprite kondoria_left1 = new Sprite(DEFAULT_SIZE, 10, 5, SpriteSheet.tiles, 16, 16);
     public static Sprite kondoria_left2 = new Sprite(DEFAULT_SIZE, 10, 6, SpriteSheet.tiles, 16, 16);
     public static Sprite kondoria_left3 = new Sprite(DEFAULT_SIZE, 10, 7, SpriteSheet.tiles, 16, 16);
@@ -117,6 +114,27 @@ public class Sprite<upstream> {
 
     public static Sprite kondoria_dead = new Sprite(DEFAULT_SIZE, 10, 8, SpriteSheet.tiles, 16, 16);
 
+    //Ovape ID 6
+    public static Sprite ovape_left_1 = new Sprite(DEFAULT_SIZE, 6, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_left_2 = new Sprite(DEFAULT_SIZE, 6, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_left_3 = new Sprite(DEFAULT_SIZE, 6, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite ovape_right_1 = new Sprite(DEFAULT_SIZE, 7, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_right_2 = new Sprite(DEFAULT_SIZE, 7, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_right_3 = new Sprite(DEFAULT_SIZE, 7, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite ovape_dead = new Sprite(DEFAULT_SIZE, 6, 8, SpriteSheet.tiles, 16, 16);
+
+    //Pass ID 7
+    public static Sprite pass_left_1 = new Sprite(DEFAULT_SIZE, 4, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite pass_left_2 = new Sprite(DEFAULT_SIZE, 4, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite pass_left_3 = new Sprite(DEFAULT_SIZE, 4, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite pass_right_1 = new Sprite(DEFAULT_SIZE, 5, 5, SpriteSheet.tiles, 16, 16);
+    public static Sprite pass_right_2 = new Sprite(DEFAULT_SIZE, 5, 6, SpriteSheet.tiles, 16, 16);
+    public static Sprite pass_right_3 = new Sprite(DEFAULT_SIZE, 5, 7, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite pass_dead = new Sprite(DEFAULT_SIZE, 4, 8, SpriteSheet.tiles, 16, 16);
 
     //Red Pontan ID 8
     public static Sprite red_pontan_left_1 = new Sprite(DEFAULT_SIZE, 12, 5, SpriteSheet.tiles, 16, 16);

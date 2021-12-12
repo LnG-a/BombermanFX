@@ -6,7 +6,7 @@ import com.example.bombermanfx.graphics.Sprite;
 
 //ID: 1
 public class Balloom extends Enemy {
-    private static final double SPEED = 0.02;
+    private static final double SPEED = SLOW;
     private static final int POINT = 100;
     private static final Sprite[] ANIMATION = new Sprite[]{Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3, Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3};
     private static final Sprite DEAD_SPRITE = Sprite.balloom_dead;
