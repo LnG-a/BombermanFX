@@ -1,15 +1,23 @@
 package com.example.bombermanfx.entities.enemies;
 
+import com.example.bombermanfx.entities.enemies.AI.AI;
 import com.example.bombermanfx.entities.enemies.AI.AILow;
+import com.example.bombermanfx.entities.enemies.AI.AIMedium;
 import com.example.bombermanfx.entities.enemies.Enemy;
 import com.example.bombermanfx.graphics.Sprite;
 
 public class Dall extends Enemy {
+    private static final double SPEED=0.025;
+    private static final int POINT=400;
+    private static final Sprite[] ANIMATION= new Sprite[]{Sprite.dall_right1,Sprite.dall_right2,Sprite.dall_right3,Sprite.dall_left1,Sprite.dall_left2,Sprite.dall_left3};
+    private static final Sprite DEAD_SPRITE = Sprite.dall_dead;;
+    private static final AI AI_LEVEL= new AILow();
+
     public Dall(double x, double y) {
-        super(x, y,0.025);
-        this.ai = new AILow();
-        this.enemyAnimation= new Sprite[]{Sprite.dall_right1,Sprite.dall_right2,Sprite.dall_right3,Sprite.dall_left1,Sprite.dall_left2,Sprite.dall_left3};
-        this.deadSprite= Sprite.dall_dead;
-        this.point= 400;
+        super(x, y,SPEED);
+        this.point= POINT;
+        this.enemyAnimation= ANIMATION;
+        this.deadSprite= DEAD_SPRITE;
+        this.ai = AI_LEVEL;
     }
 }

@@ -1,17 +1,24 @@
 package com.example.bombermanfx.entities.enemies;
 
+import com.example.bombermanfx.entities.enemies.AI.AI;
 import com.example.bombermanfx.entities.enemies.AI.AIHigh;
+import com.example.bombermanfx.entities.enemies.AI.AILow;
 import com.example.bombermanfx.entities.enemies.Enemy;
 import com.example.bombermanfx.graphics.Sprite;
 
 //ID 7
 public class Doria extends Enemy {
+    private static final double SPEED = 0.01;
+    private static final int POINT = 1000;
+    private static final Sprite[] ANIMATION = new Sprite[]{Sprite.kondoria_right1, Sprite.kondoria_right2, Sprite.kondoria_right3, Sprite.kondoria_left1, Sprite.kondoria_left2, Sprite.kondoria_left3};
+    private static final Sprite DEAD_SPRITE = Sprite.kondoria_dead;
+    private static final AI AI_LEVEL = new AILow();
+
     public Doria(double x, double y) {
-        super(x, y, 0.01);
-        this.img = Sprite.kondoria_left1.getFxImage();
-        this.ai = new AIHigh();
-        this.enemyAnimation= new Sprite[]{Sprite.kondoria_right1,Sprite.kondoria_right2,Sprite.kondoria_right3,Sprite.kondoria_left1,Sprite.kondoria_left2,Sprite.kondoria_left3};
-        this.deadSprite=Sprite.kondoria_dead;
-        this.point = 1000;
+        super(x, y, SPEED);
+        this.point = POINT;
+        this.enemyAnimation = ANIMATION;
+        this.deadSprite = DEAD_SPRITE;
+        this.ai = AI_LEVEL;
     }
 }

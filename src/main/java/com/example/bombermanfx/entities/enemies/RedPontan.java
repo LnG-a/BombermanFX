@@ -19,9 +19,4 @@ public class RedPontan extends Enemy{
         this.deadSprite= DEAD_SPRITE;
         this.ai = AI_LEVEL;
     }
-
-    @Override
-    public void dead(){
-        this.destroyed=true;
-    }
 }
