@@ -158,6 +158,17 @@ public class Sprite<upstream> {
 
     public static Sprite yellow_pontan_dead = new Sprite(DEFAULT_SIZE, 14, 8, SpriteSheet.tiles, 16, 16);
 
+    //Ovape ID 10
+    public static Sprite ovape_reborn_left_1 = new Sprite(DEFAULT_SIZE, 10, 9, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_reborn_left_2 = new Sprite(DEFAULT_SIZE, 10, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_reborn_left_3 = new Sprite(DEFAULT_SIZE, 10, 11, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite ovape_reborn_right_1 = new Sprite(DEFAULT_SIZE, 11, 9, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_reborn_right_2 = new Sprite(DEFAULT_SIZE, 11, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_reborn_right_3 = new Sprite(DEFAULT_SIZE, 11, 11, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite ovape_reborn_dead = new Sprite(DEFAULT_SIZE, 10, 12, SpriteSheet.tiles, 16, 16);
+
     //ALL
     public static Sprite mob_dead1 = new Sprite(DEFAULT_SIZE, 15, 0, SpriteSheet.tiles, 16, 16);
     public static Sprite mob_dead2 = new Sprite(DEFAULT_SIZE, 15, 1, SpriteSheet.tiles, 16, 16);

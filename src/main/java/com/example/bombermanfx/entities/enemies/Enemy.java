@@ -45,6 +45,9 @@ public abstract class Enemy extends MovableEntity {
                 this.life--;
                 destroyed=false;
             }
+            if (this.life==2){
+                this.life--;
+            }
             if (this.life == 0) {   
                 if (animation > animationDead) {
                     animation = -60;
@@ -57,9 +60,11 @@ public abstract class Enemy extends MovableEntity {
                         game.getEntities().add(new YellowPontan(x,y));
                         game.enemies+=2;
                     } else if (this.getClass().equals(Doria.class)){
-                        //game.getPlayer().setNumberOfBombs(game.getPlayer().getNumberOfBombs()+1);
                         Bomb a =new Bomb(autoFix(x),autoFix(y),2);
                         a.explode(game);
+                    } else if (this.getClass().equals(Ovape.class)){
+                        game.getEntities().add(new OvapeReborn(x,y));
+                        game.enemies++;
                     }
                     game.SCORE+=this.point;
                 } else if (animation >= 0) {
