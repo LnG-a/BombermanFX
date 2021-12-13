@@ -39,7 +39,7 @@ public class Bomberman extends Application {
     private static Font mainFont = Font.loadFont(Bomberman.class.getResource("/font/Fipps-Regular.otf").toExternalForm(),30);
     private static Font fontGameOver = Font.loadFont(Bomberman.class.getResource("/font/Fipps-Regular.otf").toExternalForm(),70);
 
-    public int LEVEL=2;
+    public int LEVEL=1;
     public boolean levelUp;
     public int enemies=0;
     public int SCORE=0;
