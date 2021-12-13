@@ -54,7 +54,8 @@ public abstract class Enemy extends MovableEntity {
                 }
                 game.SCORE+=this.point;
             } else if (animation >= 0) {
-                this.img = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animation, animationDead).getFxImage();
+                if (this.getClass().equals(Ovape.class)) this.img= Sprite.movingSprite(Sprite.ovape_reborn_transform_1, Sprite.ovape_reborn_transform_2, Sprite.ovape_reborn_dead, animation, animationDead).getFxImage();
+                else this.img = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animation, animationDead).getFxImage();
             } else this.img = deadSprite.getFxImage();
         } else {
             calculateMove(game);

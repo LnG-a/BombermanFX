@@ -170,6 +170,8 @@ public class Sprite<upstream> {
     public static Sprite ovape_reborn_right_3 = new Sprite(DEFAULT_SIZE, 11, 11, SpriteSheet.tiles, 16, 16);
 
     public static Sprite ovape_reborn_dead = new Sprite(DEFAULT_SIZE, 10, 12, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_reborn_transform_1 = new Sprite(DEFAULT_SIZE, 11, 12, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovape_reborn_transform_2 = new Sprite(DEFAULT_SIZE, 12, 12, SpriteSheet.tiles, 16, 16);
 
     //Yellow Pontan ID 11
     public static Sprite yellow_pontan_left_1 = new Sprite(DEFAULT_SIZE, 14, 5, SpriteSheet.tiles, 16, 16);
