@@ -29,7 +29,7 @@ public class Bomber extends MovableEntity {
         this.flameLength = DEFAULT_FLAME_LENGTH;
         this.numberOfBombs = DEFAULT_BOMB;
         this.life = DEFAULT_LIFE;
-        this.fixingNumber = 0.2;
+        this.fixingNumber = 0.3;
         this.img = Sprite.player_down.getFxImage();
     }
 

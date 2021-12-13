@@ -4,20 +4,14 @@ import com.example.bombermanfx.Bomberman;
 import com.example.bombermanfx.entities.bomber.Bomb;
 import com.example.bombermanfx.entities.enemies.AI.AI;
 import com.example.bombermanfx.entities.MovableEntity;
-import com.example.bombermanfx.entities.enemies.AI.AIHigh;
-import com.example.bombermanfx.entities.enemies.AI.AILow;
-import com.example.bombermanfx.entities.enemies.AI.AIMedium;
 import com.example.bombermanfx.graphics.Sprite;
 
 public abstract class Enemy extends MovableEntity {
-    /*protected static final AI LOW= new AILow();
-    protected static final AI MEDIUM= new AIMedium();
-    protected static final AI HIGH= new AIHigh();*/
-
     protected static final double SLOWEST=0.01;
     protected static final double SLOW=0.02;
     protected static final double NORMAL=0.025;
     protected static final double FAST=0.05;
+    protected static final double FASTEST=0.1;
 
     protected AI ai;
     protected int steps;

@@ -184,6 +184,10 @@ public class Bomberman extends Application {
            String line= scanner.nextLine();
            for (int j=0;j<line.length();j++){
                switch (line.charAt(j)){
+                   case 'x':
+                       entities.add(new Portal(j,i));
+                       entities.add(new Brick(j,i));
+                       break;
                    case '#':
                        stillEntities.add(new Wall(j,i));
                        break;
@@ -239,11 +243,6 @@ public class Bomberman extends Application {
                        entities.add(new Boss(j,i));
                        enemies++;
                        break;
-                   case 'x':
-                       //stillEntities.add(new Grass(j,i));
-                       entities.add(new Portal(j,i));
-                       entities.add(new Brick(j,i));
-                       break;
                    case 'p':
                        stillEntities.add(new Grass(j,i));
                        player.setX(j);
@@ -255,6 +254,7 @@ public class Bomberman extends Application {
     }
 
     private void reset() {
+        enemies=0;
         Bomb.currentBomb=0;
         entities=new ArrayList<>();
         stillEntities=new ArrayList<>();
