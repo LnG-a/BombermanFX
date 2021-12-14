@@ -6,7 +6,7 @@ import javafx.scene.image.*;
 /**
  * Lưu trữ thông tin các pixel của 1 sprite (hình ảnh game)
  */
-public class Sprite<upstream> {
+public class Sprite {
 
     public static final int DEFAULT_SIZE = 16;
     public static final int SCALED_SIZE = DEFAULT_SIZE * 3;
