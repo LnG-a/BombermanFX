@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>D:/E-Learning/OOP/BombermanFX/src/main/java/com/example/bombermanfx</OriginalElement>
+  <nodes>
+    <node x="424.0" y="863.5">com.example.bombermanfx.entities.enemies.RedPontan</node>
+    <node x="1876.0" y="976.0">com.example.bombermanfx.entities.enemies.AI.Path</node>
+    <node x="2526.75" y="372.5">com.example.bombermanfx.entities.map.Portal</node>
+    <node x="1617.0" y="863.5">com.example.bombermanfx.entities.enemies.Ovape</node>
+    <node x="233.0" y="863.5">com.example.bombermanfx.entities.enemies.Oneal</node>
+    <node x="1235.0" y="863.5">com.example.bombermanfx.entities.enemies.Doria</node>
+    <node x="1811.0" y="863.5">com.example.bombermanfx.entities.enemies.OvapeReborn</node>
+    <node x="1255.0" y="590.0">com.example.bombermanfx.entities.bomber.Bomber</node>
+    <node x="846.0" y="863.5">com.example.bombermanfx.entities.enemies.Pass</node>
+    <node x="1825.75" y="361.5">com.example.bombermanfx.entities.map.Brick</node>
+    <node x="266.0" y="976.0">com.example.bombermanfx.graphics.Sprite</node>
+    <node x="1169.0" y="976.0">com.example.bombermanfx.entities.enemies.AI.AI</node>
+    <node x="0.0" y="976.0">com.example.bombermanfx.Bomberman</node>
+    <node x="1009.0" y="645.5">com.example.bombermanfx.entities.enemies.Enemy</node>
+    <node x="1510.0" y="1105.0">com.example.bombermanfx.entities.enemies.AI.AIMedium</node>
+    <node x="2133.0" y="976.0">com.example.bombermanfx.Menu</node>
+    <node x="1423.0" y="863.5">com.example.bombermanfx.entities.enemies.Minvo</node>
+    <node x="614.0" y="976.0">com.example.bombermanfx.sounds.SoundPlayer</node>
+    <node x="2261.75" y="339.5">com.example.bombermanfx.entities.bomber.Bomb</node>
+    <node x="1937.25" y="0.0">com.example.bombermanfx.entities.Entity</node>
+    <node x="1029.0" y="852.0">com.example.bombermanfx.entities.enemies.Boss</node>
+    <node x="1169.0" y="1105.0">com.example.bombermanfx.entities.enemies.AI.AIHigh</node>
+    <node x="2732.75" y="372.5">com.example.bombermanfx.entities.map.Wall</node>
+    <node x="828.0" y="1105.0">com.example.bombermanfx.entities.enemies.AI.AILow</node>
+    <node x="1089.75" y="284.0">com.example.bombermanfx.entities.MovableEntity</node>
+    <node x="1619.75" y="372.5">com.example.bombermanfx.entities.map.Grass</node>
+    <node x="2055.75" y="361.5">com.example.bombermanfx.entities.bomber.Item</node>
+    <node x="642.0" y="863.5">com.example.bombermanfx.entities.enemies.Balloom</node>
+    <node x="1413.75" y="372.5">com.example.bombermanfx.entities.bomber.Flame</node>
+    <node x="2043.0" y="863.5">com.example.bombermanfx.entities.enemies.Dall</node>
+    <node x="0.0" y="863.5">com.example.bombermanfx.entities.enemies.YellowPontan</node>
+    <node x="2358.0" y="976.0">com.example.bombermanfx.graphics.SpriteSheet</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.bombermanfx.entities.enemies.Dall" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="0.0" y="-28.0" />
+      <point x="2123.0" y="827.0" />
+      <point x="1122.0" y="827.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.bomber.Bomb" target="com.example.bombermanfx.entities.Entity" relationship="GENERALIZATION">
+      <point x="0.0" y="-72.5" />
+      <point x="2384.25" y="259.0" />
+      <point x="2039.75" y="259.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.bomber.Bomber" target="com.example.bombermanfx.entities.MovableEntity" relationship="GENERALIZATION">
+      <point x="1.1368683772161603E-13" y="-106.0" />
+      <point x="1361.5000000000002" y="565.0" />
+      <point x="1241.75" y="565.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.map.Grass" target="com.example.bombermanfx.entities.Entity" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="1712.75" y="259.0" />
+      <point x="2039.75" y="259.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.OvapeReborn" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="0.0" y="-28.0" />
+      <point x="1917.0" y="827.0" />
+      <point x="1122.0" y="827.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.Doria" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="0.0" y="-28.0" />
+      <point x="1319.0" y="827.0" />
+      <point x="1122.0" y="827.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.Balloom" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="0.0" y="-28.0" />
+      <point x="734.0" y="827.0" />
+      <point x="1122.0" y="827.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.MovableEntity" target="com.example.bombermanfx.entities.Entity" relationship="GENERALIZATION">
+      <point x="0.0" y="-128.0" />
+      <point x="1241.75" y="259.0" />
+      <point x="2039.75" y="259.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.map.Portal" target="com.example.bombermanfx.entities.Entity" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="2619.75" y="259.0" />
+      <point x="2039.75" y="259.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.RedPontan" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="0.0" y="-28.0" />
+      <point x="523.0" y="827.0" />
+      <point x="1122.0" y="827.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.map.Brick" target="com.example.bombermanfx.entities.Entity" relationship="GENERALIZATION">
+      <point x="0.0" y="-50.5" />
+      <point x="1930.75" y="259.0" />
+      <point x="2039.75" y="259.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.map.Wall" target="com.example.bombermanfx.entities.Entity" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="2825.75" y="259.0" />
+      <point x="2039.75" y="259.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.AI.AIHigh" target="com.example.bombermanfx.entities.enemies.AI.AI" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.Boss" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.AI.AILow" target="com.example.bombermanfx.entities.enemies.AI.AI" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="988.5" y="1080.0" />
+      <point x="1329.5" y="1080.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.bomber.Flame" target="com.example.bombermanfx.entities.Entity" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="1506.75" y="259.0" />
+      <point x="2039.75" y="259.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.Enemy" target="com.example.bombermanfx.entities.MovableEntity" relationship="GENERALIZATION">
+      <point x="0.0" y="-50.5" />
+      <point x="1122.0" y="565.0" />
+      <point x="1241.75" y="565.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.bomber.Item" target="com.example.bombermanfx.entities.Entity" relationship="GENERALIZATION">
+      <point x="0.0" y="-50.5" />
+      <point x="2148.75" y="259.0" />
+      <point x="2039.75" y="259.0" />
+      <point x="0.0" y="117.0" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.YellowPontan" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="0.0" y="-28.0" />
+      <point x="106.5" y="827.0" />
+      <point x="1122.0" y="827.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.AI.AIMedium" target="com.example.bombermanfx.entities.enemies.AI.AI" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="1670.5" y="1080.0" />
+      <point x="1329.5" y="1080.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.Minvo" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="1.1368683772161603E-13" y="-28.0" />
+      <point x="1510.0000000000002" y="827.0" />
+      <point x="1122.0" y="827.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.Pass" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="0.0" y="-28.0" />
+      <point x="927.5" y="827.0" />
+      <point x="1122.0" y="827.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.Ovape" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="0.0" y="-28.0" />
+      <point x="1704.0" y="827.0" />
+      <point x="1122.0" y="827.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="com.example.bombermanfx.entities.enemies.Oneal" target="com.example.bombermanfx.entities.enemies.Enemy" relationship="GENERALIZATION">
+      <point x="0.0" y="-28.0" />
+      <point x="318.5" y="827.0" />
+      <point x="1122.0" y="827.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7" showDependencies="false" x="1367.7142857142858" y="705.5714285714287" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
